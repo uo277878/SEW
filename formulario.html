@@ -1,0 +1,66 @@
+<!DOCTYPE HTML>
+
+<html lang="es">
+<head>
+    <!-- Datos que describen el documento -->
+    <meta charset="UTF-8" />
+	<meta name="author" content= "Miriam González" />
+	<meta name ="viewport" content ="width=device-width, initial scale=1.0" />
+    <title>Formulario sobre el artículo</title>
+	<link rel="stylesheet" type="text/css" href="estilo.css" />
+</head>
+
+<body>
+	<h1>Formulario de opinión</h1>
+    <!-- Datos con el contenidos que aparece en el navegador -->
+    <p>Por favor, rellena este formulario para saber si la información ha sido útil.</p>
+	<form>
+		<p>
+			<label for="nombre">Nombre:</label>
+			<input id="nombre" type="text" />
+		</p>
+		<p>
+			<label for="apellido">Apellido:</label>
+			<input id="apellido" type="text" />
+		</p>
+		<p>
+			<label for="telefono">Teléfono:</label>
+			<input id="telefono" type="tel">
+		</p>
+		<p>
+			<label>E-mail: <input type="email"></label>
+		</p>
+		<fieldset>
+			<legend> Importancia en ingeniería informática</legend>
+			<p>
+				<label for="mucha"> 
+				<input id="mucha" type="radio"> Mucha </label>
+			</p>
+			<p>
+				<label for="normal"> 
+				<input id="normal" type="radio"> Normal </label>
+			</p>
+			<p>
+				<label for="poca"> 
+				<input id="poca" type="radio"> Poca </label>
+			</p>
+		</fieldset>
+		<p><label>¿Cuál es tu opinión sobre Margaret Hamilton? <textarea></textarea></label></p>
+		<!-- <p><button>Enviar</button></p> -->
+		<input type="submit" value="Enviar" >
+	</form>
+	<nav>
+		<ul>
+			<li>
+				<a title="Publicaciones" tabindex="1" accesskey="A" href= "publicaciones.html">Publicaciones de Margaret</a>
+			</li>
+			<li>
+				<a title="Inicio" tabindex="4" accesskey="I" href= "index.html">Biografía de Margaret</a>
+			</li>
+			<li>
+				<a title="Premios" tabindex="2" accesskey="P" href= "premios.html">Premios y reconocimientos de Margaret</a>
+			</li>
+		</ul>
+	</nav>
+</body>
+</html>
