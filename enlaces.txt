@@ -1,0 +1,12 @@
+encabezados (h1-h6)
+
+https://html.spec.whatwg.org/multipage/sections.html#the-h1,-h2,-h3,-h4,-h5,-and-h6-elements
+
+párrafos
+
+https://html.spec.whatwg.org/multipage/grouping-content.html#the-p-element
+
+elementos incrustados
+
+https://html.spec.whatwg.org/multipage/embedded-content.html#the-img-element
+
