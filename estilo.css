@@ -1,0 +1,50 @@
+/*Especificidad: 001*/
+body {
+  display: grid;
+  grid-template-columns: [first] 60% [middle] 10% [middle-end] 30% [end];
+  grid-template-rows: [row1-start] 30% [second-line] 40% [third-line] 30% [last-line];
+  font-family: Tahoma, sans-serif;
+  color: #000000;
+  background-color: #fff;
+  margin-left: 2em;   
+  margin-right: 2em; 
+  }
+/*Especificidad: 001*/
+h1 {
+  grid-column: first / span 3;
+  grid-row: row1-start;
+  color: #fff;    
+  background-color:#9C3C3C; 
+  font-size: 3em;
+  text-transform: uppercase;
+  padding: 2em; 
+  text-align: center; 
+  }
+/*Especificidad: 001*/
+section{
+  grid-column: first / middle;
+  grid-row: second-line / third-line;
+  text-align: justify;
+  margin-right: 3em; 
+}
+/*Especificidad: 001*/
+nav{
+  border: 3px solid #9C3C3C;
+  grid-column: first / span 3;
+  grid-row: last-line;
+}
+/*Especificidad: 001*/
+footer{
+  grid-column-start: middle-end;
+  grid-column-end: end;
+  grid-row-start: second-line;
+  grid-row-end: third-line;
+  text-align: right;
+}
+img {
+  width: 100%;
+  height: auto;
+}
+li{
+  padding: 0.7em;
+}
