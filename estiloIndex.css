@@ -1,0 +1,24 @@
+/*Especificidad: 001*/
+section{
+  grid-column: first / middle;
+  grid-row: second-line / third-line;
+  text-align: justify;
+  margin-right: 3em; 
+}
+/*Especificidad: 001*/
+footer{
+  grid-column-start: middle;
+  grid-column-end: end;
+  grid-row-start: second-line;
+  grid-row-end: third-line;
+  text-align: right;
+}
+/*Especificidad: 001*/
+img {
+  width: 100%;
+  height: auto;
+}
+/*Especificidad: 001*/
+li{
+  padding-top: 0.7em;
+}

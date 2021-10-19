@@ -1,0 +1,27 @@
+/*Especificidad: 001*/
+body {
+    display: grid;
+    grid-template-columns: [first] 70% [middle] 30% [end];
+    grid-template-rows: [row1-start] 30% [second-line] 40% [third-line] 30% [last-line];
+    font-family: Tahoma, sans-serif;
+    color: #000000;
+    background-color: #fff;
+    margin-left: 2em;   
+    margin-right: 2em; 
+    }
+/*Especificidad: 001*/
+h1 {
+  grid-column: first / span 2;
+  grid-row: row1-start;
+  color: #fff;    
+  background-color:#9C3C3C; 
+  text-transform: uppercase;
+  padding: 2em; 
+  text-align: center;     
+  }
+/*Especificidad: 001*/
+nav{
+    grid-column: first / span 3;
+    grid-row: last-line;
+    border: 0.5em solid #9C3C3C;
+  }

@@ -1,0 +1,11 @@
+/*Especificidad: 001*/
+section{
+  text-align: justify;
+  padding: 1em;
+  grid-column: first / middle;
+  grid-row: second-line / third-line;
+  }
+/*Especificidad: 001*/
+li{
+  padding-top: 0.7em;
+  }
