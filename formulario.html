@@ -1,0 +1,87 @@
+<!DOCTYPE HTML>
+
+<html lang="es">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="author" content="Miriam González" />
+	<meta name="description" content="Página web para rellenar un formulario sobre Rust" />
+	<meta name = "keywords" content = "Rust, formulario, opinion, nota, datos, útil"/>
+	<meta name="viewport" content="width=device-width, initial scale=1.0" />
+	<title>Formulario sobre el artículo</title>
+	<link rel="stylesheet" type="text/css" href="estilo/estilo.css" />
+	<link rel="stylesheet" type="text/css" href="estilo/layoutNoArticle.css" />
+</head>
+
+<body>
+	<nav>
+        <a title="Inicio" tabindex="1" accesskey="I" href= "index.html">Caracterísiticas de Rust</a>
+        <a title="Versiones" tabindex="2" accesskey="V" href= "versiones.html">Versiones de Rust</a>
+        <a title="Pros y contras" tabindex="3" accesskey="P" href= "proscontras.html">Pros y contras de Rust</a>
+        <a title="Formulario" tabindex="4" accesskey="F" href= "formulario.html">Formulario</a>
+    </nav>
+	<h1>Lenguaje Rust</h1>
+	<main>
+		<h2>Formulario de opinión</h2>
+		<p>Por favor, rellena este formulario para saber si la información ha sido útil.</p>
+		<form>
+			<p>
+				<label for="nombre">Nombre:</label>
+				<input id="nombre" type="text" />
+			</p>
+			<p>
+				<label for="apellido">Apellido:</label>
+				<input id="apellido" type="text" />
+			</p>
+			<p>
+				<label for="edad">Edad:</label>
+				<input id="edad" type="number">
+			</p>
+			<p>
+				<label for="telefono">Teléfono:</label>
+				<input id="telefono" type="tel">
+			</p>
+			<p>
+				<label>E-mail: <input type="email"></label>
+			</p>
+			<p>
+				<label for="fecha">Fecha de nacimiento:</label>
+				<input id="fecha" type="date">
+			</p>
+			<fieldset>
+				<legend> ¿Cuánto de útil te ha sido esta información?</legend>
+				<p>
+					<label for="mucha">
+						<input id="mucha" type="radio" name="info"> Mucho </label>
+				</p>
+				<p>
+					<label for="normal">
+						<input id="normal" type="radio" name="info"> Normal </label>
+				</p>
+				<p>
+					<label for="poca">
+						<input id="poca" type="radio" name="info"> Poco </label>
+				</p>
+			</fieldset>
+			<p>
+				<label for="rango">¿Qué nota le das al lenguaje Rust?</label>
+				<input id="rango" type="range" />
+			</p>
+			<p>
+				<label for="opinion">¿Cuál es tu opinión sobre Rust? 
+					<textarea id="opinion" name="comments" maxlength=1000></textarea>
+				</label>
+			</p>
+			<p>
+				<label for="condiciones">Acepto el uso de mis datos al rellenar este formulario</label>
+				<input id="condiciones" type="checkbox">
+			</p>
+			<input type="submit" value="Enviar">
+		</form>
+	</main>
+	<footer>
+		<p>Trabajo para la asignatura de SEW - Curso 2022-2023 - Universidad de Oviedo - Miriam González Alonso</p>
+	</footer>
+</body>
+
+</html>

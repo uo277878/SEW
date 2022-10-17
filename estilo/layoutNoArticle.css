@@ -1,0 +1,37 @@
+/*****************************
+/* Autor: Miriam González Alonso
+/* Hoja de estilo para establecer el layout del sitio web
+*****************************/
+/*Especificidad: 001*/
+body{
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: auto;
+    grid-template-areas: 
+        "nav nav nav nav"
+        "h1 h1 h1 h1"
+        "main main main main"
+        "footer footer footer footer"
+        ;
+}
+
+/*Especificidad: 001*/
+nav{
+    grid-area: nav;
+}
+
+/*Especificidad: 001*/
+h1{
+    grid-area: h1;
+}
+
+/*Especificidad: 001*/
+main{
+    grid-area: main;
+}
+
+/*Especificidad: 001*/
+footer{
+    grid-area: footer;
+}
+
