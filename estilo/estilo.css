@@ -66,10 +66,9 @@ h3{
     /*background-color está heredado de body*/
 }
 
-
-
 /*Especificidad: 002*/
 article video, article audio{
+    margin-left: 1em;
     margin-top: 2em;
     max-width: 100%;
     min-width: 50%;
