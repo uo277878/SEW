@@ -102,8 +102,8 @@ ul li{
     list-style-type: square;
 }
 
-/*Especificidad 012*/
-ul li:last-child{
+/*Especificidad 004*/
+ul li ul li{
     list-style-type: circle;
 }
 
