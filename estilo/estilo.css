@@ -23,12 +23,14 @@ a{
 }
 
 nav a{
+    /*background color está heredado de body*/
     color:black;
     text-decoration-line: none;
     padding:0.5em;
 }
 
 nav a:hover{
+    /*color está heredado de nav a*/
     background-color: #ffc93c;
 }
 
@@ -64,10 +66,7 @@ h3{
     /*background-color está heredado de body*/
 }
 
-/*Especificidad: 001*/
-article{
-    text-align: center;
-}
+
 
 /*Especificidad: 002*/
 article video, article audio{
