@@ -54,6 +54,10 @@ main{
     padding: 0.5em;
 }
 
+main input{
+    width:90%;
+}
+
 h2{
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     color: #123560;
