@@ -13,8 +13,7 @@ body{
 nav {
     background-color: #ff6f3c;
     /*color está heredado de body*/
-    text-align: center;
-    padding:1rem;
+    padding:1em;
 }
 
 /*Especificidad: 001*/
@@ -23,24 +22,34 @@ a{
     color: #155263;
 }
 
+nav a{
+    color:black;
+    text-decoration-line: none;
+    padding:0.5em;
+}
+
+nav a:hover{
+    background-color: #ffc93c;
+}
+
 /*Especificidad: 001*/
 h1{
     background-color: #ffc93c;
     /*color está heredado de body*/
-    padding:1rem;
+    padding:1em;
     text-align: center;
-    font-family: 'Courier New', Courier, monospace;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 /*Especificidad: 001*/
 h1,main,article{
-    margin-left:3rem;
-    margin-right:3rem;
+    margin-left:1em;
+    margin-right:1em;
 }
 
 /*Especificidad: 001*/
 main{
-    padding: 0.5rem;
+    padding: 0.5em;
 }
 
 h2{
@@ -61,16 +70,10 @@ article{
 }
 
 /*Especificidad: 002*/
-article video{
-    max-width: 500px;
-    width: 100%;
-}
-
-/*Especificidad: 002*/
-article img, audio{
-    max-width: 600px;
-    width: 100%;
-    margin-top: 2rem;
+article video, article audio{
+    margin-top: 2em;
+    max-width: 100%;
+    min-width: 50%;
 }
 
 /*Especificidad: 001*/
@@ -85,8 +88,8 @@ tr td:first-child{
 
 /*Especificidad: 001*/
 th,td{
-    border: 2px solid black;
-    padding:0.5rem;
+    border: 0.01em solid black;
+    padding:0.5em;
 }
 
 th{
@@ -103,25 +106,13 @@ ul li{
 ul li:last-child{
     list-style-type: circle;
 }
-/*Especificidad 012*/
-form input[type="text"], input[type="number"], input[type="tel"], input[type="email"], input[type="date"] {
-    display: block;
-}
-/*Especificidad 002*/
-form textarea{
-    display: block;
-}
+
 
 /*Especificidad: 001*/
 footer{
     background-color: #ff6f3c;
     /*color está heredado de body*/
     text-align: center;
-    padding:1rem;
-    margin-top: 2rem;
-}
-
-/*Especificidad: 002*/
-article img,audio{
-    margin-right: 2rem;
+    padding:1em;
+    margin-top: 2em;
 }
