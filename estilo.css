@@ -1,0 +1,120 @@
+/*****************************
+/* Autor: Miriam González Alonso
+/* Hoja de estilos que se aplicará a todo el sitio web
+*****************************/
+/*Especificidad: 001*/
+body{
+    color: #155263;
+    background-color: #fffbcb;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+/*Especificidad: 001*/
+nav {
+    background-color: #ff6f3c;
+    /*color está heredado de body*/
+    padding:1em;
+}
+
+/*Especificidad: 001*/
+a{
+    /*background-color está heredado de body*/
+    color: #155263;
+}
+
+nav a{
+    /*background color está heredado de body*/
+    color:black;
+    text-decoration-line: none;
+    padding:0.5em;
+}
+
+nav a:hover{
+    /*color está heredado de nav a*/
+    background-color: #ffc93c;
+}
+
+/*Especificidad: 001*/
+h1{
+    background-color: #ffc93c;
+    /*color está heredado de body*/
+    padding:1em;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/*Especificidad: 001*/
+h1,main,article{
+    margin-left:1em;
+    margin-right:1em;
+}
+
+/*Especificidad: 001*/
+main{
+    padding: 0.5em;
+}
+
+h2{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: #123560;
+    /*background-color está heredado de body*/
+}
+
+h3{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: #113123;
+    /*background-color está heredado de body*/
+}
+
+/*Especificidad: 001*/
+article{
+    text-align: center;
+}
+
+/*Especificidad: 002*/
+article video, article audio{
+    margin-top: 2em;
+    max-width: 100%;
+    min-width: 50%;
+}
+
+/*Especificidad: 001*/
+table{
+    border-collapse: collapse;
+}
+
+/*Especificidad: 012*/
+tr td:first-child{
+    text-align: center;
+}
+
+/*Especificidad: 001*/
+th,td{
+    border: 0.01em solid black;
+    padding:0.5em;
+}
+
+th{
+    background-color: #ffc93c;
+    /*color está heredado de body*/
+}
+
+/*Especificidad: 002*/
+ul li{
+    list-style-type: square;
+}
+
+/*Especificidad 004*/
+ul li ul li{
+    list-style-type: circle;
+}
+
+
+/*Especificidad: 001*/
+footer{
+    background-color: #ff6f3c;
+    /*color está heredado de body*/
+    text-align: center;
+    padding:1em;
+    margin-top: 2em;
+}
