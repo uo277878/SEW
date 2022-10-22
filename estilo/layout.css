@@ -5,13 +5,13 @@
 /*Especificidad: 001*/
 body{
     display:grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     grid-template-rows: auto;
     grid-template-areas: 
-        "nav nav nav nav"
-        "h1 h1 h1 h1"
-        "main main article article"
-        "footer footer footer footer"
+        "nav nav nav nav nav"
+        "h1 h1 h1 h1 h1"
+        "main main main article article"
+        "footer footer footer footer footer"
         ;
 }
 
