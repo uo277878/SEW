@@ -3,7 +3,7 @@
 /* Hoja de estilos que se aplicará a todo el sitio web
 *****************************/
 /*Especificidad: 001*/
-body{
+body {
     color: #155263;
     background-color: #fffbcb;
     font-family: 'Times New Roman', Times, serif;
@@ -13,113 +13,116 @@ body{
 nav {
     background-color: #ff6f3c;
     /*color está heredado de body*/
-    padding:1em;
+    color: inherit;
+    padding: 1em;
 }
 
 /*Especificidad: 001*/
-a{
+a {
     /*background-color está heredado de body*/
+    background-color: inherit;
     color: #155263;
 }
 
 /*Especificidad: 002*/
-nav a{
-    /*background color está heredado de body*/
-    color:black;
+nav a {
+    /*background color está heredado de nav*/
+    background-color: inherit;
+    color: black;
     text-decoration-line: none;
-    padding:0.5em;
+    padding: 0.5em;
 }
 
 /*Especificidad: 012*/
-nav a:hover{
+nav a:hover {
     /*color está heredado de nav a*/
+    color: inherit;
     background-color: #ffc93c;
 }
 
 /*Especificidad: 001*/
-h1{
+h1 {
     background-color: #ffc93c;
     /*color está heredado de body*/
-    padding:1em;
+    color: inherit;
+    padding: 1em;
     text-align: center;
     font-family: Arial, Helvetica, sans-serif;
 }
 
 /*Especificidad: 001*/
-h1,main,article{
-    margin-left:1em;
-    margin-right:1em;
+h1, main, article {
+    margin-left: 0.5em;
+    margin-right: 0.5em;
 }
 
 /*Especificidad: 001*/
-main{
+main {
     padding: 0.5em;
 }
 
 /*Especificidad: 001*/
-h2{
+h2 {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     color: #123560;
+    background-color: inherit;
     /*background-color está heredado de body*/
 }
 
 /*Especificidad: 001*/
-h3{
+h3 {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     color: #113123;
+    background-color: inherit;
     /*background-color está heredado de body*/
-}
-
-article{
-    padding: 1em;
 }
 
 /*Especificidad: 002*/
-article video, article audio{
-    margin-left: 1em;
+article video, article audio, article img {
     margin-top: 2em;
-    max-width: 100%;
-    min-width: 50%;
+    max-width: 90%;
+    min-width: 60%;
+    height: auto;
 }
 
 /*Especificidad: 001*/
-table{
+table {
     border-collapse: collapse;
 }
 
 /*Especificidad: 012*/
-tr td:first-child{
+tr td:first-child {
     text-align: center;
 }
 
 /*Especificidad: 001*/
-th,td{
+th,td {
     border: 0.01em solid black;
-    padding:0.5em;
+    padding: 0.5em;
 }
 
 /*Especificidad: 001*/
-th{
+th {
     background-color: #ffc93c;
+    color: inherit;
     /*color está heredado de body*/
 }
 
 /*Especificidad: 002*/
-ul li{
+ul li {
     list-style-type: square;
 }
 
 /*Especificidad 004*/
-ul li ul li{
+ul li ul li {
     list-style-type: circle;
 }
 
-
 /*Especificidad: 001*/
-footer{
+footer {
     background-color: #ff6f3c;
-    /*color está heredado de body*/
+    color: black;
     text-align: center;
-    padding:1em;
+    padding: 1em;
     margin-top: 2em;
 }
