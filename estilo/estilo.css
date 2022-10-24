@@ -13,21 +13,19 @@ body {
 nav {
     background-color: #ff6f3c;
     /*color está heredado de body*/
-    color: inherit;
     padding: 1em;
+    line-height: 2em;
 }
 
 /*Especificidad: 001*/
 a {
     /*background-color está heredado de body*/
-    background-color: inherit;
     color: #155263;
 }
 
 /*Especificidad: 002*/
 nav a {
     /*background color está heredado de nav*/
-    background-color: inherit;
     color: black;
     text-decoration-line: none;
     padding: 0.5em;
@@ -43,7 +41,6 @@ nav a:hover {
 h1 {
     background-color: #ffc93c;
     /*color está heredado de body*/
-    color: inherit;
     padding: 1em;
     text-align: center;
     font-family: Arial, Helvetica, sans-serif;
@@ -64,7 +61,6 @@ main {
 h2 {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     color: #123560;
-    background-color: inherit;
     /*background-color está heredado de body*/
 }
 
@@ -72,7 +68,6 @@ h2 {
 h3 {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     color: #113123;
-    background-color: inherit;
     /*background-color está heredado de body*/
 }
 
@@ -103,7 +98,6 @@ th,td {
 /*Especificidad: 001*/
 th {
     background-color: #ffc93c;
-    color: inherit;
     /*color está heredado de body*/
 }
 
