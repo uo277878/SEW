@@ -90,8 +90,8 @@ tr td:first-child {
 }
 
 /*Especificidad: 001*/
-th,td {
-    border: 0.01em solid black;
+th,td,tr {
+    border: 0.2em solid black;
     padding: 0.5em;
 }
 
