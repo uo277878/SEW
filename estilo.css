@@ -32,6 +32,7 @@ section{
   margin-right: 6em;
 }
 
+/*Especificidad: 001*/
 p{
   margin-top: 2em
 }
