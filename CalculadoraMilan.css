@@ -33,6 +33,7 @@ form{
       "boton boton boton boton boton"
       "boton boton boton boton boton"
       "boton boton boton boton boton"
+      "label label label label label"
       ;
   grid-gap: 1em;
   padding: 2em;
@@ -86,5 +87,10 @@ main input[value="ON/C"],input[value="CE"],input[value="+/-"],input[value="√"]
 input[value="%"],input[value="x"],input[value="÷"],input[value="-"],
 input[value="Mrc"],input[value="+"],input[value="M-"],input[value="M+"]{
   color:#fff;
-  background-color: #9bd3ae;
+  background-color: #2B5F3C;
+}
+
+/*Especificidad: 002*/
+main label{
+  grid-area: label;
 }
