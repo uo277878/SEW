@@ -1,0 +1,90 @@
+/*****************************
+/* Autor: Miriam González Alonso
+/* Hoja de estilo de la Calculadora Milan
+/*Especificidad: 001*/
+body {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-areas: 
+  "h1 body body"
+  "main body body"
+  ;
+}
+
+/*Especificidad: 001*/
+body {
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  color: #818181;
+  background-color: #fff;
+  grid-area: body;
+}
+
+
+/*Especificidad: 001*/
+form{
+  display:grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(7, 1fr);
+  grid-template-areas: 
+      "pantalla pantalla pantalla pantalla pantalla"
+      "boton boton boton boton boton"
+      "boton boton boton boton boton"
+      "boton boton boton boton boton"
+      "boton boton boton boton boton"
+      "boton boton boton boton boton"
+      "boton boton boton boton boton"
+      ;
+  grid-gap: 1em;
+  padding: 2em;
+}
+
+/*Especificidad: 001*/
+main {
+  grid-area: main;
+  background-color: #bc98f3;
+  color: black;
+}
+
+/*Especificidad: 012*/
+main input[type="text"] {
+  grid-area: pantalla;
+}
+
+/*Especificidad: 001*/
+h1 {
+  color: #fff;    
+  background-color:#FF5733; 
+  text-transform: uppercase;
+  text-align: center;  
+  grid-area: h1;   
+}
+
+/*Especificidad: 002*/
+main input{
+  background-color: #fff;
+  color: #000;
+  font-weight: bold;
+  font-size: 1em;
+}
+
+/*Especificidad: 012*/
+main input[type="button"]{
+  padding: 1.5em;
+  border-radius: 1em;
+}
+
+/*Especificidad: 012*/
+main input[value="+"]{
+  grid-column-start:4;
+  grid-column-end:5;
+  grid-row-start: 5;
+  grid-row-end: 7;
+}
+
+/*Especificidad: 012*/
+main input[value="ON/C"],input[value="CE"],input[value="+/-"],input[value="√"],
+input[value="%"],input[value="x"],input[value="÷"],input[value="-"],
+input[value="Mrc"],input[value="+"],input[value="M-"],input[value="M+"]{
+  color:#fff;
+  background-color: #9bd3ae;
+}
