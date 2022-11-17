@@ -12,11 +12,11 @@ class Calculadora{
         this.operadorPulsado = false;
         this.numOperandos = 1;
         document.addEventListener("keydown", (event) => {
-            this.tecla(event.key);
+            this.tecla(event.key, event);
         });
     }
 
-    tecla(key){
+    tecla(key, evento){
         if(key === 'c' || key === 'C'){
             this.borrarTodo();
         }
@@ -60,6 +60,7 @@ class Calculadora{
             this.punto();
         }
         if (key === 'Enter') {
+            evento.preventDefault();
             this.igual();
         }
     }
@@ -304,6 +305,19 @@ class CalculadoraCientifica extends Calculadora{
     constructor(){
         super();
         this.expTecla = false;
+        this.shiftPulsado = false;
+        this.hypPulsado = false;
+        this.fePulsado = false;
+    }
+
+    tecla(key, evento){
+        super.tecla(key,evento);
+        if(key === "("){
+            this.parentesisIzq();
+        }
+        if(key === ")"){
+            this.parentesisDcha();
+        }
     }
 
     digitos(num){
@@ -324,13 +338,14 @@ class CalculadoraCientifica extends Calculadora{
         }
         if(this.expTecla){
             this.pantalla = this.pantalla.slice(0,-2);
-            console.log("Pantalla if expTecla: " + this.pantalla);
             document.querySelector('input[type=text]').value = document.querySelector('input[type=text]').value.slice(0,-2);
             this.pantalla += Number(num);
             document.querySelector('input[type=text]').value += Number(num);
             this.expTecla = false;
         }
-        console.log("Pantalla: " + this.pantalla);
+        if(this.fePulsado){
+
+        }
     }
 
     deg(){
@@ -344,11 +359,36 @@ class CalculadoraCientifica extends Calculadora{
     }
 
     hyp(){
-
+        if(!this.hypPulsado){
+            this.hypPulsado = true;
+        } else{
+            this.hypPulsado = false;
+        }
+        if(this.shiftPulsado && this.hypPulsado){
+            document.querySelector('input[type=button][value="asin"]').value = "asinh";
+            document.querySelector('input[type=button][value="acos"]').value = "acosh";
+            document.querySelector('input[type=button][value="atan"]').value = "atanh";
+        } else if(!this.hypPulsado && this.shiftPulsado){
+            document.querySelector('input[type=button][value="asinh"]').value = "asin";
+            document.querySelector('input[type=button][value="acosh"]').value = "acos";
+            document.querySelector('input[type=button][value="atanh"]').value = "atan";
+        } else if(!this.hypPulsado && !this.shiftPulsado){
+            document.querySelector('input[type=button][value="sinh"]').value = "sin";
+            document.querySelector('input[type=button][value="cosh"]').value = "cos";
+            document.querySelector('input[type=button][value="tanh"]').value = "tan";
+        } else{
+            document.querySelector('input[type=button][value="sin"]').value = "sinh";
+            document.querySelector('input[type=button][value="cos"]').value = "cosh";
+            document.querySelector('input[type=button][value="tan"]').value = "tanh";
+        }
     }
 
     fe(){
-
+        if(!this.fePulsado){
+            this.fePulsado = true;
+        } else{
+            this.fePulsado = false;
+        }
     }
 
     mc(){
@@ -385,90 +425,103 @@ class CalculadoraCientifica extends Calculadora{
     }
 
     sin(){
-        console.log(this.pantalla);
-        if(document.querySelector('input[type=button][name="deg"]').value == "RAD"){
-            if(this.pantalla.includes("+") || this.pantalla.includes("-") || this.pantalla.includes("*") || this.pantalla.includes("/")){
-                var result = this.pantalla.split(/[*/+-]/);
-                var seno = result[result.length-1];
-                this.pantalla = this.pantalla.slice(0,-seno.length);
-                this.pantalla += "Math.sin(" + seno +")";
-            } else{
-                var seno = this.pantalla;
-                this.pantalla = this.pantalla.slice(0,-seno.length);
-                this.pantalla = "Math.sin(" + seno +")";
-            }
-        } else if(document.querySelector('input[type=button][name="deg"]').value == "DEG"){
-            if(this.pantalla.includes("+") || this.pantalla.includes("-") || this.pantalla.includes("*") || this.pantalla.includes("/")){
-                var result = this.pantalla.split(/[*/+-]/);
-                var seno = result[result.length-1];
-                this.pantalla = this.pantalla.slice(0,-seno.length);
-                var degrees = seno * (Math.PI / 180);
-                this.pantalla += "Math.sin(" + degrees +")";
-            } else{
-                var seno = this.pantalla;
-                this.pantalla = this.pantalla.slice(0,-seno.length);
-                var degrees = seno * (Math.PI / 180);
-                this.pantalla = "Math.sin(" + degrees +")";
-            }
+        if(document.querySelector('input[type=button][name="sen"]').value == "asin"){
+            this.asin();
+        } else if(document.querySelector('input[type=button][name="sen"]').value == "asinh"){
+            this.asinh();
+        } else if(document.querySelector('input[type=button][name="sen"]').value == "sinh"){
+            this.sinh();
         } else{
-            if(this.pantalla.includes("+") || this.pantalla.includes("-") || this.pantalla.includes("*") || this.pantalla.includes("/")){
-                var result = this.pantalla.split(/[*/+-]/);
-                var seno = result[result.length-1];
-                this.pantalla = this.pantalla.slice(0,-seno.length);
-                var gradians = seno * Math.PI / 200;
-                this.pantalla += "Math.sin(" + gradians + ")";
+            if(document.querySelector('input[type=button][name="deg"]').value == "RAD"){
+                if(this.pantalla.includes("+") || this.pantalla.includes("-") || this.pantalla.includes("*") || this.pantalla.includes("/")){
+                    var result = this.pantalla.split(/[*/+-]/);
+                    var seno = result[result.length-1];
+                    this.pantalla = this.pantalla.slice(0,-seno.length);
+                    this.pantalla += "Math.sin(" + seno +")";
+                } else{
+                    var seno = this.pantalla;
+                    this.pantalla = this.pantalla.slice(0,-seno.length);
+                    this.pantalla = "Math.sin(" + seno +")";
+                }
+            } else if(document.querySelector('input[type=button][name="deg"]').value == "DEG"){
+                if(this.pantalla.includes("+") || this.pantalla.includes("-") || this.pantalla.includes("*") || this.pantalla.includes("/")){
+                    var result = this.pantalla.split(/[*/+-]/);
+                    var seno = result[result.length-1];
+                    this.pantalla = this.pantalla.slice(0,-seno.length);
+                    var degrees = seno * (Math.PI / 180);
+                    this.pantalla += "Math.sin(" + degrees +")";
+                } else{
+                    var seno = this.pantalla;
+                    this.pantalla = this.pantalla.slice(0,-seno.length);
+                    var degrees = seno * (Math.PI / 180);
+                    this.pantalla = "Math.sin(" + degrees +")";
+                }
             } else{
-                var seno = this.pantalla;
-                this.pantalla = this.pantalla.slice(0,-seno.length);
-                var gradians = seno * Math.PI / 200;
-                this.pantalla = "Math.sin(" + gradians + ")";
+                if(this.pantalla.includes("+") || this.pantalla.includes("-") || this.pantalla.includes("*") || this.pantalla.includes("/")){
+                    var result = this.pantalla.split(/[*/+-]/);
+                    var seno = result[result.length-1];
+                    this.pantalla = this.pantalla.slice(0,-seno.length);
+                    var gradians = seno * Math.PI / 200;
+                    this.pantalla += "Math.sin(" + gradians + ")";
+                } else{
+                    var seno = this.pantalla;
+                    this.pantalla = this.pantalla.slice(0,-seno.length);
+                    var gradians = seno * Math.PI / 200;
+                    this.pantalla = "Math.sin(" + gradians + ")";
+                }
             }
+            document.querySelector('input[type=text]').value = document.querySelector('input[type=text]').value.slice(0,-seno.length);
+            document.querySelector('input[type=text]').value += "sin(" + seno + ")";
         }
-        document.querySelector('input[type=text]').value = document.querySelector('input[type=text]').value.slice(0,-seno.length);
-        document.querySelector('input[type=text]').value += "sin(" + seno + ")";
     }
 
     cos(){
-        if(document.querySelector('input[type=button][name="deg"]').value == "RAD"){
-            if(this.pantalla.includes("+") || this.pantalla.includes("-") || this.pantalla.includes("*") || this.pantalla.includes("/")){
-                var result = this.pantalla.split(/[*/+-]/);
-                var coseno = result[result.length-1];
-                this.pantalla = this.pantalla.slice(0,-coseno.length);
-                this.pantalla += "Math.cos(" + coseno +")";
-            } else{
-                var coseno = this.pantalla;
-                this.pantalla = this.pantalla.slice(0,-coseno.length);
-                this.pantalla = "Math.cos(" + coseno +")";
-            }
-        } else if(document.querySelector('input[type=button][name="deg"]').value == "DEG"){
-            if(this.pantalla.includes("+") || this.pantalla.includes("-") || this.pantalla.includes("*") || this.pantalla.includes("/")){
-                var result = this.pantalla.split(/[*/+-]/);
-                var coseno = result[result.length-1];
-                this.pantalla = this.pantalla.slice(0,-coseno.length);
-                var degrees = coseno * (Math.PI / 180);
-                this.pantalla += "Math.cos(" + degrees +")";
-            } else{
-                var coseno = this.pantalla;
-                this.pantalla = this.pantalla.slice(0,-coseno.length);
-                var degrees = coseno * (Math.PI / 180);
-                this.pantalla = "Math.cos(" + degrees +")";
-            }
+        if(document.querySelector('input[type=button][name="cosen"]').value == "acos"){
+            this.acos();
+        } else if(document.querySelector('input[type=button][name="cosen"]').value == "acosh"){
+            this.acosh();
         } else{
-            if(this.pantalla.includes("+") || this.pantalla.includes("-") || this.pantalla.includes("*") || this.pantalla.includes("/")){
-                var result = this.pantalla.split(/[*/+-]/);
-                var coseno = result[result.length-1];
-                this.pantalla = this.pantalla.slice(0,-coseno.length);
-                var gradians = coseno * Math.PI / 200;
-                this.pantalla += "Math.cos(" + gradians + ")";
+            if(document.querySelector('input[type=button][name="deg"]').value == "RAD"){
+                if(this.pantalla.includes("+") || this.pantalla.includes("-") || this.pantalla.includes("*") || this.pantalla.includes("/")){
+                    var result = this.pantalla.split(/[*/+-]/);
+                    var coseno = result[result.length-1];
+                    this.pantalla = this.pantalla.slice(0,-coseno.length);
+                    this.pantalla += "Math.cos(" + coseno +")";
+                } else{
+                    var coseno = this.pantalla;
+                    this.pantalla = this.pantalla.slice(0,-coseno.length);
+                    this.pantalla = "Math.cos(" + coseno +")";
+                }
+            } else if(document.querySelector('input[type=button][name="deg"]').value == "DEG"){
+                if(this.pantalla.includes("+") || this.pantalla.includes("-") || this.pantalla.includes("*") || this.pantalla.includes("/")){
+                    var result = this.pantalla.split(/[*/+-]/);
+                    var coseno = result[result.length-1];
+                    this.pantalla = this.pantalla.slice(0,-coseno.length);
+                    var degrees = coseno * (Math.PI / 180);
+                    this.pantalla += "Math.cos(" + degrees +")";
+                } else{
+                    var coseno = this.pantalla;
+                    this.pantalla = this.pantalla.slice(0,-coseno.length);
+                    var degrees = coseno * (Math.PI / 180);
+                    this.pantalla = "Math.cos(" + degrees +")";
+                }
             } else{
-                var coseno = this.pantalla;
-                this.pantalla = this.pantalla.slice(0,-coseno.length);
-                var gradians = coseno * Math.PI / 200;
-                this.pantalla = "Math.cos(" + gradians + ")";
+                if(this.pantalla.includes("+") || this.pantalla.includes("-") || this.pantalla.includes("*") || this.pantalla.includes("/")){
+                    var result = this.pantalla.split(/[*/+-]/);
+                    var coseno = result[result.length-1];
+                    this.pantalla = this.pantalla.slice(0,-coseno.length);
+                    var gradians = coseno * Math.PI / 200;
+                    this.pantalla += "Math.cos(" + gradians + ")";
+                } else{
+                    var coseno = this.pantalla;
+                    this.pantalla = this.pantalla.slice(0,-coseno.length);
+                    var gradians = coseno * Math.PI / 200;
+                    this.pantalla = "Math.cos(" + gradians + ")";
+                }
             }
+            document.querySelector('input[type=text]').value = document.querySelector('input[type=text]').value.slice(0,-coseno.length);
+            document.querySelector('input[type=text]').value += "cos(" + coseno + ")";
         }
-        document.querySelector('input[type=text]').value = document.querySelector('input[type=text]').value.slice(0,-coseno.length);
-        document.querySelector('input[type=text]').value += "cos(" + coseno + ")";
     }
 
     tan(){
@@ -920,8 +973,9 @@ class CalculadoraCientifica extends Calculadora{
                 this.pantalla = this.pantalla.slice(0,-ultimo.length);
                 this.pantalla += Math.pow(10,ultimo);
             }
-            console.log("Pantalla en potencia10: " + this.pantalla);
         }
+        document.querySelector('input[type=text]').value = document.querySelector('input[type=text]').value.slice(0,-ultimo.length);
+        document.querySelector('input[type=text]').value += eval(this.pantalla);
     }
 
     log(){
@@ -935,7 +989,8 @@ class CalculadoraCientifica extends Calculadora{
             this.pantalla = this.pantalla.slice(0,-ultimo.length);
             this.pantalla += Math.log10(ultimo);
         }
-        console.log("Pantalla en log: " + this.pantalla);
+        document.querySelector('input[type=text]').value = document.querySelector('input[type=text]').value.slice(0,-ultimo.length);
+        document.querySelector('input[type=text]').value += eval(this.pantalla);
     }
 
     exp(){
@@ -950,7 +1005,28 @@ class CalculadoraCientifica extends Calculadora{
     }
 
     flecha(){
-
+        if(!this.shiftPulsado){
+            this.shiftPulsado = true;
+        } else{
+            this.shiftPulsado = false;
+        }
+        if(this.shiftPulsado && this.hypPulsado){
+            document.querySelector('input[type=button][value="asin"]').value = "asinh";
+            document.querySelector('input[type=button][value="acos"]').value = "acosh";
+            document.querySelector('input[type=button][value="atan"]').value = "atanh";
+        } else if(!this.hypPulsado && this.shiftPulsado){
+            document.querySelector('input[type=button][value="sin"]').value = "asin";
+            document.querySelector('input[type=button][value="cos"]').value = "acos";
+            document.querySelector('input[type=button][value="tan"]').value = "atan";
+        } else if(this.hypPulsado && !this.shiftPulsado){
+            document.querySelector('input[type=button][value="sinh"]').value = "sin";
+            document.querySelector('input[type=button][value="cosh"]').value = "cos";
+            document.querySelector('input[type=button][value="tanh"]').value = "tan";
+        } else{
+            document.querySelector('input[type=button][value="asin"]').value = "sin";
+            document.querySelector('input[type=button][value="acos"]').value = "cos";
+            document.querySelector('input[type=button][value="atan"]').value = "tan";
+        }
     }
 
     ce(){
@@ -989,6 +1065,7 @@ class CalculadoraCientifica extends Calculadora{
     }
 
     multiplicacion(){
+        this.on = false;
         this.sqr = false;
         this.equal = false;
         this.pantalla += "*";
@@ -996,30 +1073,42 @@ class CalculadoraCientifica extends Calculadora{
         if(this.pantalla.includes(",e+")){
             var numAnterior = this.pantalla.split(",");
             numAnterior = numAnterior[0];
+            if(numAnterior.includes("+") || numAnterior.includes("-") || numAnterior.includes("/") || numAnterior.includes("*")){
+                numAnterior = numAnterior.split(/[*/+-]/);
+                numAnterior = numAnterior[numAnterior.length-1];
+            } 
             var numPosterior = this.pantalla.split(",e+");
             numPosterior = numPosterior[1];
-            numPosterior = numPosterior.slice(0,-1);
-            console.log("NumAnt: " + numAnterior + " NumPos: " + numPosterior);
             if(numPosterior == 0){
                 this.pantalla = this.pantalla.replace(",e+0","");
             } else{
                 var multiplicar = 10**numPosterior;
-                console.log("Multiplicar: " + multiplicar);
                 this.pantalla = this.pantalla.replace(numAnterior + ",e+" + numPosterior,numAnterior*multiplicar);
-                console.log("Pantalla else exp: " + this.pantalla);
             }
-            console.log(this.pantalla);
-            //this.pantalla = eval(this.pantalla);
             document.querySelector('input[type=text]').value = this.pantalla;
-            this.expTecla = false;
         }
     }
 
     factorial(){
-
+        if(this.pantalla.includes("+") || this.pantalla.includes("-") || this.pantalla.includes("*") || this.pantalla.includes("/")){
+            var result = this.pantalla.split(/[*/+-]/);
+            var n = result[result.length - 1];
+        } else{
+            var n = document.querySelector('input[type=text]').value;
+        }
+        var total = 1;
+            for (var i=1; i<=n; i++) {
+                total = total * i; 
+            }
+        this.pantalla = this.pantalla.slice(0,-n.length);
+        this.pantalla += total;
+        document.querySelector('input[type=text]').value = document.querySelector('input[type=text]').value.slice(0,-n.length);
+        document.querySelector('input[type=text]').value += "fact(" + n + ")";
+        
     }
 
     resta(){
+        this.on = false;
         this.sqr = false;
         this.equal = false;
         this.pantalla += "-";
@@ -1027,78 +1116,130 @@ class CalculadoraCientifica extends Calculadora{
         if(this.pantalla.includes(",e+")){
             var numAnterior = this.pantalla.split(",");
             numAnterior = numAnterior[0];
+            if(numAnterior.includes("+") || numAnterior.includes("-") || numAnterior.includes("/") || numAnterior.includes("*")){
+                numAnterior = numAnterior.split(/[*/+-]/);
+                numAnterior = numAnterior[numAnterior.length-1];
+            } 
             var numPosterior = this.pantalla.split(",e+");
             numPosterior = numPosterior[1];
-            numPosterior = numPosterior.slice(0,-1);
-            console.log("NumAnt: " + numAnterior + " NumPos: " + numPosterior);
             if(numPosterior == 0){
                 this.pantalla = this.pantalla.replace(",e+0","");
             } else{
                 var multiplicar = 10**numPosterior;
-                console.log("Multiplicar: " + multiplicar);
                 this.pantalla = this.pantalla.replace(numAnterior + ",e+" + numPosterior,numAnterior*multiplicar);
-                console.log("Pantalla else exp: " + this.pantalla);
             }
-            console.log(this.pantalla);
-            //this.pantalla = eval(this.pantalla);
             document.querySelector('input[type=text]').value = this.pantalla;
-            this.expTecla = false;
         }
     }
 
     cambiarSigno(){
-        console.log("Cambiar signo");
         if(this.pantalla.includes("+") || this.pantalla.includes("-") || this.pantalla.includes("*") || this.pantalla.includes("/")){
             var result = this.pantalla.split(/[*/+-]/);
             var ultimo = result[result.length - 1];
-            document.querySelector('input[type=text]').value = document.querySelector('input[type=text]').value.slice(0,-ultimo.length);
-            ultimo *= (-1);
-            document.querySelector('input[type=text]').value += ultimo;
-            this.pantalla = document.querySelector('input[type=text]').value;
+            var operador = this.pantalla.slice(-ultimo.length-1,-ultimo.length);
+            if(operador == "+" || operador == "-"){
+                document.querySelector('input[type=text]').value = document.querySelector('input[type=text]').value.slice(0,-ultimo.length-1);
+                this.pantalla = this.pantalla.slice(0,-ultimo.length-1);
+                if(operador == "+"){
+                    ultimo *= (-1);
+                } else if(operador == "-"){
+                    ultimo = "+" + ultimo;
+                }
+                document.querySelector('input[type=text]').value += ultimo;
+                this.pantalla += ultimo;
+            } else{
+                var penultimo = result[result.length - 2];
+                document.querySelector('input[type=text]').value = document.querySelector('input[type=text]').value.slice(0,-penultimo.length-1);
+                document.querySelector('input[type=text]').value += (operador + ultimo * (-1));
+                this.pantalla = this.pantalla.slice(0,-penultimo.length-1);
+                this.pantalla += (operador + ultimo * (-1));
+            }
         } else{
             document.querySelector('input[type=text]').value *= (-1);
-            this.pantalla = document.querySelector('input[type=text]').value;
+            this.pantalla = valor*(-1);
         }
     }
 
     suma(){
+        this.on = false;
         this.sqr = false;
         this.equal = false;
+        
+        if(this.fePulsado){
+            if(this.pantalla.includes("+") || this.pantalla.includes("-") || this.pantalla.includes("*") || this.pantalla.includes("/")){
+                var result = this.pantalla.split(/[*/+-]/);
+                var ultimo = result[result.length-1];
+                console.log("Ultimo: " + ultimo);
+                if(ultimo.length > 1){
+                    var primerNumero = ultimo.substring(0,1);
+                    var restoNumero = ultimo.substring(1,ultimo.length);
+                    console.log("Primer número: " + primerNumero);
+                    console.log("Resto número: " + restoNumero);
+                    document.querySelector('input[type=text]').value = document.querySelector('input[type=text]').value.slice(0,-ultimo.length);
+                    document.querySelector('input[type=text]').value += primerNumero + "," + restoNumero;
+                    document.querySelector('input[type=text]').value += "e+" + restoNumero.length;
+                } else{
+                    document.querySelector('input[type=text]').value += ",e+0";
+                }
+            } else{
+                var valor = document.querySelector('input[type=text]').value;
+                if(valor.length > 1){
+                    var primerNumero = valor.substring(0,1);
+                    var restoNumero = valor.substring(1,valor.length);
+                    console.log("Primer número: " + primerNumero);
+                    console.log("Resto número: " + restoNumero);
+                    document.querySelector('input[type=text]').value = document.querySelector('input[type=text]').value.slice(0,-valor.length);
+                    document.querySelector('input[type=text]').value += primerNumero + "," + restoNumero;
+                    document.querySelector('input[type=text]').value += "e+" + restoNumero.length;
+                } else{
+                    document.querySelector('input[type=text]').value += ",e+0";
+                }
+            }
+        }
         this.pantalla += "+";
         document.querySelector('input[type=text]').value += "+";
         if(this.pantalla.includes(",e+")){
             var numAnterior = this.pantalla.split(",");
             numAnterior = numAnterior[0];
+            if(numAnterior.includes("+") || numAnterior.includes("-") || numAnterior.includes("/") || numAnterior.includes("*")){
+                numAnterior = numAnterior.split(/[*/+-]/);
+                numAnterior = numAnterior[numAnterior.length-1];
+            } 
             var numPosterior = this.pantalla.split(",e+");
             numPosterior = numPosterior[1];
-            numPosterior = numPosterior.slice(0,-1);
-            console.log("NumAnt: " + numAnterior + " NumPos: " + numPosterior);
             if(numPosterior == 0){
                 this.pantalla = this.pantalla.replace(",e+0","");
             } else{
                 var multiplicar = 10**numPosterior;
-                console.log("Multiplicar: " + multiplicar);
                 this.pantalla = this.pantalla.replace(numAnterior + ",e+" + numPosterior,numAnterior*multiplicar);
-                console.log("Pantalla else exp: " + this.pantalla);
             }
-            console.log(this.pantalla);
-            //this.pantalla = eval(this.pantalla);
             document.querySelector('input[type=text]').value = this.pantalla;
-            this.expTecla = false;
         }
+        
     }
 
     parentesisIzq(){
+        console.log("llama a parentesis izq");
+        if(this.on){
+            document.querySelector('input[type=text]').value = "";
+            this.on = false;
+        }
         document.querySelector('input[type=text]').value += "(";
         this.pantalla += "(";
     }
 
     parentesisDcha(){
+        console.log("llama a parentesis dcha");
+        if(this.on){
+            document.querySelector('input[type=text]').value = "";
+            this.on = false;
+        }
         document.querySelector('input[type=text]').value += ")";
         this.pantalla += ")";
     }
 
     division(){
+        this.on = false;
         this.sqr = false;
         this.equal = false;
         this.pantalla += "/";
@@ -1106,26 +1247,24 @@ class CalculadoraCientifica extends Calculadora{
         if(this.pantalla.includes(",e+")){
             var numAnterior = this.pantalla.split(",");
             numAnterior = numAnterior[0];
+            if(numAnterior.includes("+") || numAnterior.includes("-") || numAnterior.includes("/") || numAnterior.includes("*")){
+                numAnterior = numAnterior.split(/[*/+-]/);
+                numAnterior = numAnterior[numAnterior.length-1];
+            } 
             var numPosterior = this.pantalla.split(",e+");
             numPosterior = numPosterior[1];
-            numPosterior = numPosterior.slice(0,-1);
-            console.log("NumAnt: " + numAnterior + " NumPos: " + numPosterior);
             if(numPosterior == 0){
                 this.pantalla = this.pantalla.replace(",e+0","");
             } else{
                 var multiplicar = 10**numPosterior;
-                console.log("Multiplicar: " + multiplicar);
                 this.pantalla = this.pantalla.replace(numAnterior + ",e+" + numPosterior,numAnterior*multiplicar);
-                console.log("Pantalla else exp: " + this.pantalla);
             }
-            console.log(this.pantalla);
-            //this.pantalla = eval(this.pantalla);
             document.querySelector('input[type=text]').value = this.pantalla;
-            this.expTecla = false;
         }
     }
 
     igual(){
+        console.log("Pantalla en igual: " + this.pantalla);
         if(this.pantalla.includes("--")){
             this.pantalla = this.pantalla.replace("--","+");
         } else if(this.pantalla.includes("++")){
@@ -1138,20 +1277,40 @@ class CalculadoraCientifica extends Calculadora{
         if(this.pantalla.includes(",e+")){
             var numAnterior = this.pantalla.split(",");
             numAnterior = numAnterior[0];
+            if(numAnterior.includes("+") || numAnterior.includes("-") || numAnterior.includes("/") || numAnterior.includes("*")){
+                numAnterior = numAnterior.split(/[*/+-]/);
+                numAnterior = numAnterior[numAnterior.length-1];
+            } 
+            console.log(numAnterior);
             var numPosterior = this.pantalla.split(",e+");
             numPosterior = numPosterior[1];
-            console.log("NumAnt: " + numAnterior + " NumPos: " + numPosterior);
             if(numPosterior == 0){
                 this.pantalla = this.pantalla.replace(",e+0","");
             } else{
                 var multiplicar = 10**numPosterior;
-                console.log("Multiplicar: " + multiplicar);
                 this.pantalla = this.pantalla.replace(numAnterior + ",e+" + numPosterior,numAnterior*multiplicar);
-                console.log("Pantalla else exp: " + this.pantalla);
             }
+            document.querySelector('input[type=text]').value = this.pantalla;
         }
         super.igual();
-        this.pantalla = document.querySelector('input[type=text]').value
+        console.log("Pantalla después de superigual: " + this.pantalla);
+        if(this.fePulsado){
+            var valor = eval(this.pantalla);
+            this.pantalla = valor.toString();
+            console.log("Length: " + this.pantalla.length);
+            if(this.pantalla.length > 1){
+                var primerNumero = this.pantalla.substring(0,1);
+                var restoNumero = this.pantalla.substring(1,this.pantalla.length);
+                console.log("Primer número: " + primerNumero);
+                console.log("Resto número: " + restoNumero);
+                document.querySelector('input[type=text]').value = document.querySelector('input[type=text]').value.slice(0,-valor.length);
+                document.querySelector('input[type=text]').value += primerNumero + "," + restoNumero;
+                document.querySelector('input[type=text]').value += "e+" + restoNumero.length;
+            } else{
+                document.querySelector('input[type=text]').value += ",e+0";
+            }
+        }
+        this.pantalla = document.querySelector('input[type=text]').value;
     }
 }
 
