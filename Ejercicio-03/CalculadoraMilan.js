@@ -32,10 +32,10 @@ class CalculadoraMilan{
         if(key === 'p' || key === 'P'){
             this.porcentaje();
         }
-        if (key === '*') {
+        if (key === 'x' || key === 'X') {
             this.multiplicacion();
         }
-        if (key === '/') {
+        if (key === 'v' || key === 'V') {
             this.division();
         }
         if (key === '-') {
