@@ -4,21 +4,21 @@
 
 /*Especificidad: 001*/
 body {
-	background-color:aliceblue;
+	background-color:white;
 	color: black;
 }
 
 /*Especificidad: 001*/
 h1 {
-	color:#041043;
+	color:black;
 }
 
 /*Especificidad: 001*/
 h2 {
-	color:#042a43;
+	color:blak;
 }
 
 /*Especificidad: 001*/
 p {
-	color:#141607;
+	color:black;
 }
