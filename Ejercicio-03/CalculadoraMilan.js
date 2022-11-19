@@ -151,6 +151,7 @@ class CalculadoraMilan{
 
     mrc(){
         document.querySelector('input[type=text]').value = this.mem;
+		this.pantalla = this.mem;
     }
 
     mMenos(){
