@@ -1,0 +1,54 @@
+<!DOCTYPE HTML>
+
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name = "author" content = "Miriam González Alonso"/>
+    <meta name = "description" content = "Página web de una calculadora energética"/>
+    <meta name ="viewport" content ="width=device-width, initial scale=1.0" />
+    <script src="CalculadoraEspecializada.js"></script>
+    <title>Calculadora Especializada</title>
+    <link rel="stylesheet" type="text/css" href="CalculadoraEspecializada.css" />
+
+</head>
+
+<body>
+    <h1>Calculadora Especializada</h1>
+    <main>
+        <form>
+            <label for="texto">Calculadora Energética</label>
+            <textarea id="texto" name="pantalla" readonly></textarea>
+
+            <input type="button" value="TV" onclick="calculadora.tv()" />
+            <input type="button" value="Aspiradora" onclick="calculadora.aspiradora()" />
+            <input type="button" value="Nevera" onclick="calculadora.nevera()" />
+            <input type="button" value="PC" onclick="calculadora.pc()" />
+            <input type="button" value="Horno" onclick="calculadora.horno()" />
+            <input type="button" value="Lavadora" onclick="calculadora.lavadora()" />
+            <input type="button" value="Lavavajillas" onclick="calculadora.lavavajillas()" />
+            <input type="button" value="Consola" onclick="calculadora.consola()" />
+
+
+            <input type="button" value="7" onclick="calculadora.digitos(7)" />
+            <input type="button" value="8" onclick="calculadora.digitos(8)" />
+            <input type="button" value="9" onclick="calculadora.digitos(9)" />
+            <input type="button" value="C" onclick="calculadora.borrar()" />
+
+            <input type="button" value="4" onclick="calculadora.digitos(4)" />
+            <input type="button" value="5" onclick="calculadora.digitos(5)" />
+            <input type="button" value="6" onclick="calculadora.digitos(6)" />
+            <input type="button" value="*" onclick="calculadora.multiplicacion()" />
+
+            <input type="button" value="1" onclick="calculadora.digitos(1)" />
+            <input type="button" value="2" onclick="calculadora.digitos(2)" />
+            <input type="button" value="3" onclick="calculadora.digitos(3)" />
+            <input type="button" value="+" onclick="calculadora.suma()" />
+
+            <input type="button" value="." onclick="calculadora.punto()" />
+            <input type="button" value="0" onclick="calculadora.digitos(0)" />
+            <input type="button" value="Enter" onclick="calculadora.enter()" />
+            
+        </form>
+    </main>
+</body>
+</html>
