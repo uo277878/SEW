@@ -82,4 +82,10 @@ input[value="Enter"]{
   grid-column:3/5;
 }
 
+/*Especificidad: 011*/
+input[value="C"]{
+  grid-column: 4;
+  grid-row:7/9;
+}
+
 

@@ -183,7 +183,7 @@ class CalculadoraEspecializada extends CalculadoraRPN{
 
     tecla(key, evento){
         super.tecla(key,evento);
-        if(key === 't' || key === 'T'){
+        if(key === 'y' || key === 'Y'){
             this.tv();
         }
         if(key === 'r' || key === 'R'){
@@ -211,12 +211,15 @@ class CalculadoraEspecializada extends CalculadoraRPN{
 
 
     tv(){
+        console.log(this.pila);
         this.yaCalculado = true;
         let kWTv = 0.07;
         this.pila.push(kWTv);
         this.multiplicacion();
+        console.log(this.pila);
         this.pila.push(this.precioKw);
         this.multiplicacion();
+        console.log(this.pila);
         document.querySelector('textarea').value = this.mostrar();
     }
 
