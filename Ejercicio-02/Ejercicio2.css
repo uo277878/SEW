@@ -1,0 +1,24 @@
+/*****************************
+/* Autor: Miriam González Alonso
+/* Hoja de estilo del ejercicio 2*/
+
+/*Especificidad: 001*/
+body {
+	background-color:aliceblue;
+	color: black;
+}
+
+/*Especificidad: 001*/
+h1 {
+	color:#0a249a;
+}
+
+/*Especificidad: 001*/
+h2 {
+	color:#087ac6;
+}
+
+/*Especificidad: 001*/
+p {
+	color:#141607;
+}
