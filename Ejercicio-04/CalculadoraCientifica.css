@@ -1,0 +1,82 @@
+/*****************************
+/* Autor: Miriam González Alonso
+/* Hoja de estilo de la Calculadora Cientifica
+
+/*Especificidad: 001*/
+body {
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  color: #818181;
+  background-color: #fff;
+}
+
+
+/*Especificidad: 001*/
+h1 {
+  color: #fff;    
+  background-color:#FF5733; 
+  text-transform: uppercase;
+}
+
+/*Especificidad: 001*/
+form{
+  display:grid;
+  grid-template-columns: repeat(5, 6em);
+  column-gap: 1em;
+  row-gap: 1em;
+  padding: 2em;
+  width: 35em;
+  background-color: rgb(225, 223, 223);
+  color: black;
+}
+
+/*Especificidad: 001*/
+label{
+  grid-column:1/6;
+  width: 100%;
+  font-size: 2em;
+  background-color: white;
+  color:rgb(0, 0, 0)
+}
+
+/*Especificidad: 001*/
+input {
+  padding: 1em;
+}
+
+/*Especificidad: 011*/
+input[type=button] {
+  background-color: rgb(246, 245, 245);
+  color: black;
+  font-size: 100%;
+  height: 90%;
+}
+
+/*Especificidad: 011*/
+input[type=text] {
+  font-size: 100%;
+  grid-column:1/6;
+  width: 93%;
+  height: 3em;
+}
+
+/*Especificidad: 011*/
+input[value="0"],input[value="1"],input[value="2"],input[value="3"],input[value="4"],
+input[value="5"],input[value="6"],input[value="7"],input[value="8"],input[value="9"],
+input[value="."] {
+  font-weight: bold;
+}
+
+/*Especificidad: 011*/
+input[value="MC"], input[value="MR"], input[value="M+"], input[value="M-"],
+input[value="MS"], input[value="DEG"], input[value="HYP"], input[value="F-E"] {
+  background-color: rgb(225, 223, 223);
+  color: black;
+}
+
+/*Especificidad: 011*/
+input[value="F-E"]{
+  grid-column:3/6;
+  width:30%;
+}
+
+
