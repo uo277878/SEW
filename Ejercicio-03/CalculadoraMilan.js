@@ -211,7 +211,7 @@ class CalculadoraMilan{
         this.sqr = true;
         this.operadorPulsado = true;
         var pantalla = Number(eval(this.pantalla));
-        this.raizValor = Number(eval(pantalla**(1/2)));
+        this.raizValor = Number(pantalla**(1/2));
         this.pantalla = this.raizValor.toString();
     }
 
