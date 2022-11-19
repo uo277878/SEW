@@ -67,7 +67,7 @@ input[value="+"]{
 
 /*Especificidad: 011*/
 input[value="ON/C"],input[value="CE"],input[value="+/-"],input[value="√"],
-input[value="%"],input[value="x"],input[value="÷"],input[value="-"],
+input[value="%"],input[value="*"],input[value="/"],input[value="-"],
 input[value="Mrc"],input[value="+"],input[value="M-"],input[value="M+"]{
   color:#fff;
   background-color: #2B5F3C;
