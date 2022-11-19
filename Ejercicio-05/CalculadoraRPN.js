@@ -13,6 +13,24 @@ class CalculadoraRPN{
         if(key === 'c' || key === 'C'){
             this.borrar();
         }
+        if(key === 's' || key === 'S'){
+            this.sin();
+        }
+        if(key === 'o' || key === 'O'){
+            this.cos();
+        }
+        if(key === 't' || key === 'T'){
+            this.tan();
+        }
+        if(key === 'i' || key === 'I'){
+            this.asin();
+        }
+        if(key === 'a' || key === 'A'){
+            this.acos();
+        }
+        if(key === 'n' || key === 'N'){
+            this.atan();
+        }
         if (key === 'x') {
             this.multiplicacion();
         }
@@ -83,7 +101,7 @@ class CalculadoraRPN{
 
     sin(){
         if(this.pila.length >= 1){
-            this.pila.push(Math.sin(Number(this.pila.pop())));
+            this.pila.push(Math.sin(Number(this.pila.pop())).toFixed(5));
         }
         this.puntoPulsado = false;
         document.querySelector('textarea').value = this.mostrar();
@@ -91,7 +109,7 @@ class CalculadoraRPN{
 
     cos(){
         if(this.pila.length >= 1){
-            this.pila.push(Math.cos(Number(this.pila.pop())));
+            this.pila.push(Math.cos(Number(this.pila.pop())).toFixed(5));
         }
         this.puntoPulsado = false;
         document.querySelector('textarea').value = this.mostrar();
@@ -99,7 +117,7 @@ class CalculadoraRPN{
 
     tan(){
         if(this.pila.length >= 1){
-            this.pila.push(Math.tan(Number(this.pila.pop())));
+            this.pila.push(Math.tan(Number(this.pila.pop())).toFixed(5));
         }
         this.puntoPulsado = false;
         document.querySelector('textarea').value = this.mostrar();
@@ -107,7 +125,7 @@ class CalculadoraRPN{
 
     asin(){
         if(this.pila.length >= 1){
-            this.pila.push(Math.asin(Number(this.pila.pop())));
+            this.pila.push(Math.asin(Number(this.pila.pop())).toFixed(5));
         }
         this.puntoPulsado = false;
         document.querySelector('textarea').value = this.mostrar();
@@ -115,7 +133,7 @@ class CalculadoraRPN{
 
     acos(){
         if(this.pila.length >= 1){
-            this.pila.push(Math.acos(Number(this.pila.pop())));
+            this.pila.push(Math.acos(Number(this.pila.pop())).toFixed(5));
         }
         this.puntoPulsado = false;
         document.querySelector('textarea').value = this.mostrar();
@@ -123,7 +141,7 @@ class CalculadoraRPN{
 
     atan(){
         if(this.pila.length >= 1){
-            this.pila.push(Math.atan(Number(this.pila.pop())));
+            this.pila.push(Math.atan(Number(this.pila.pop())).toFixed(5));
         }
         this.puntoPulsado = false;
         document.querySelector('textarea').value = this.mostrar();
@@ -139,7 +157,9 @@ class CalculadoraRPN{
 
     enter(){
         var numero = this.pantalla;
-        this.pila.push(numero);
+        if(numero != ""){
+            this.pila.push(numero);
+        }
         this.pantalla = "";
         document.querySelector('textarea').value = this.mostrar();
     }
