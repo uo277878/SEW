@@ -66,7 +66,7 @@ class CalculadoraMilan{
     }
 
     digitos(num){
-        this.equal = 0;
+        this.equal = false;
         if(this.on){
             document.querySelector('input[type=text]').value = "";
             this.on = false;
@@ -263,19 +263,7 @@ class CalculadoraMilan{
                 this.pantalla = result[0] + "/" + result[1];
                 document.querySelector('input[type=text]').value = Number(eval(this.pantalla));
             } else {
-                if(this.sqr == true){
-                    if(this.pantalla.includes("+") || this.pantalla.includes("-") || this.pantalla.includes("*") || this.pantalla.includes("/")){
-                        document.querySelector('input[type=text]').value = Number(eval(this.pantalla));
-                        this.pantalla = document.querySelector('input[type=text]').value;
-                        this.sqr = false;
-                    } else{
-                        document.querySelector('input[type=text]').value = this.pantalla;
-                        this.pantalla = document.querySelector('input[type=text]').value;
-                        this.sqr = false;
-                    }
-                } else{
-                    document.querySelector('input[type=text]').value = Number(eval(this.pantalla));
-                }
+                document.querySelector('input[type=text]').value = Number(eval(this.pantalla));
             }
             this.equal = true;
         } catch(error){
