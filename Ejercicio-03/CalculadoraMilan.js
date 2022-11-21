@@ -11,6 +11,7 @@ class CalculadoraMilan{
         this.on = true;
         this.operadorPulsado = false;
         this.numOperandos = 1;
+		document.querySelector('input[type=text]').value = 0;
         document.addEventListener("keydown", (event) => {
             this.tecla(event.key, event);
         });

@@ -4,6 +4,7 @@ class CalculadoraRPN{
         this.pila = new Array();
         this.pantalla = "";
         this.puntoPulsado = false;
+		document.querySelector('textarea').value = "";
         document.addEventListener("keydown", (event) => {
             this.tecla(event.key, event);
         });
@@ -211,86 +212,100 @@ class CalculadoraEspecializada extends CalculadoraRPN{
 
 
     tv(){
-        console.log(this.pila);
-        this.yaCalculado = true;
-        let kWTv = 0.07;
-        this.pila.push(kWTv);
-        this.multiplicacion();
-        console.log(this.pila);
-        this.pila.push(this.precioKw);
-        this.multiplicacion();
-        console.log(this.pila);
-        document.querySelector('textarea').value = this.mostrar();
+        if(!this.yaCalculado){
+            this.yaCalculado = true;
+            let kWTv = 0.07;
+            this.pila.push(kWTv);
+            this.multiplicacion();
+            this.pila.push(this.precioKw);
+            this.multiplicacion();
+            document.querySelector('textarea').value = this.mostrar();
+        }
     }
 
     aspiradora(){
-        this.yaCalculado = true;
-        let kWAspiradora = 0.5;
-        this.pila.push(kWAspiradora);
-        this.multiplicacion();
-        this.pila.push(this.precioKw);
-        this.multiplicacion();
-        document.querySelector('textarea').value = this.mostrar();
+        if(!this.yaCalculado){
+            this.yaCalculado = true;
+            let kWAspiradora = 0.5;
+            this.pila.push(kWAspiradora);
+            this.multiplicacion();
+            this.pila.push(this.precioKw);
+            this.multiplicacion();
+            document.querySelector('textarea').value = this.mostrar();
+        }
     }
 
     nevera(){
-        this.yaCalculado = true;
-        let kWNevera = 0.2;
-        this.pila.push(kWNevera);
-        this.multiplicacion();
-        this.pila.push(this.precioKw);
-        this.multiplicacion();
-        document.querySelector('textarea').value = this.mostrar();
+        if(!this.yaCalculado){
+            this.yaCalculado = true;
+            let kWNevera = 0.2;
+            this.pila.push(kWNevera);
+            this.multiplicacion();
+            this.pila.push(this.precioKw);
+            this.multiplicacion();
+            document.querySelector('textarea').value = this.mostrar();
+        }
     }
 
     pc(){
-        this.yaCalculado = true;
-        let kWPc = 0.1;
-        this.pila.push(kWPc);
-        this.multiplicacion();
-        this.pila.push(this.precioKw);
-        this.multiplicacion();
-        document.querySelector('textarea').value = this.mostrar();
+        if(!this.yaCalculado){
+            this.yaCalculado = true;
+            let kWPc = 0.1;
+            this.pila.push(kWPc);
+            this.multiplicacion();
+            this.pila.push(this.precioKw);
+            this.multiplicacion();
+            document.querySelector('textarea').value = this.mostrar();
+        }
+        
     }
 
     horno(){
-        this.yaCalculado = true;
-        let kwHorno = 0.85;
-        this.pila.push(kwHorno);
-        this.multiplicacion();
-        this.pila.push(this.precioKw);
-        this.multiplicacion();
-        document.querySelector('textarea').value = this.mostrar();
+        if(!this.yaCalculado){
+            this.yaCalculado = true;
+            let kwHorno = 0.85;
+            this.pila.push(kwHorno);
+            this.multiplicacion();
+            this.pila.push(this.precioKw);
+            this.multiplicacion();
+            document.querySelector('textarea').value = this.mostrar();
+        }
     }
 
     lavadora(){
-        this.yaCalculado = true;
-        let kwLavadora = 0.6;
-        this.pila.push(kwLavadora);
-        this.multiplicacion();
-        this.pila.push(this.precioKw);
-        this.multiplicacion();
-        document.querySelector('textarea').value = this.mostrar();
+        if(!this.yaCalculado){
+            this.yaCalculado = true;
+            let kwLavadora = 0.6;
+            this.pila.push(kwLavadora);
+            this.multiplicacion();
+            this.pila.push(this.precioKw);
+            this.multiplicacion();
+            document.querySelector('textarea').value = this.mostrar();
+        }
     }
 
     lavavajillas(){
-        this.yaCalculado = true;
-        let kwLavavajillas = 0.4;
-        this.pila.push(kwLavavajillas);
-        this.multiplicacion();
-        this.pila.push(this.precioKw);
-        this.multiplicacion();
-        document.querySelector('textarea').value = this.mostrar();
+        if(!this.yaCalculado){
+            this.yaCalculado = true;
+            let kwLavavajillas = 0.4;
+            this.pila.push(kwLavavajillas);
+            this.multiplicacion();
+            this.pila.push(this.precioKw);
+            this.multiplicacion();
+            document.querySelector('textarea').value = this.mostrar();
+        }
     }
 
     consola(){
-        this.yaCalculado = true;
-        let kwConsola = 0.1;
-        this.pila.push(kwConsola);
-        this.multiplicacion();
-        this.pila.push(this.precioKw);
-        this.multiplicacion();
-        document.querySelector('textarea').value = this.mostrar();
+        if(!this.yaCalculado){
+            this.yaCalculado = true;
+            let kwConsola = 0.1;
+            this.pila.push(kwConsola);
+            this.multiplicacion();
+            this.pila.push(this.precioKw);
+            this.multiplicacion();
+            document.querySelector('textarea').value = this.mostrar();
+        }
     }
 
     multiplicacion(){
@@ -322,7 +337,11 @@ class CalculadoraEspecializada extends CalculadoraRPN{
             if(this.yaCalculado){
                 mostrar += (i+1) + ":\t\t" + Number(this.pila[i]).toFixed(3);
             } else{
-                mostrar += (i+1) + ":\t\t" + this.pila[i];
+                if(i != size-1){
+                    mostrar += (i+1) + ":\t\t" + Number(this.pila[i]).toFixed(3);
+                } else{
+                    mostrar += (i+1) + ":\t\t" + this.pila[i];
+                }
             }
             
             if(!this.yaCalculado){

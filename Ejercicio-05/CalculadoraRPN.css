@@ -54,6 +54,7 @@ textarea {
   width: 98%;
   height: 10em;
   text-align: left;
+  resize: none;
 }
 
 input[value="0"],input[value="1"],input[value="2"],input[value="3"],input[value="4"],

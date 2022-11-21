@@ -11,6 +11,7 @@ class CalculadoraMilan{
         this.on = true;
         this.operadorPulsado = false;
         this.numOperandos = 1;
+		document.querySelector('input[type=text]').value = "";
         document.addEventListener("keydown", (event) => {
             this.tecla(event.key, event);
         });
@@ -284,49 +285,49 @@ class CalculadoraCientifica extends CalculadoraMilan{
 
     tecla(key, evento){
         super.tecla(key,evento);
-        if(key === "("){
+        if(key === '('){
             this.parentesisIzq();
         }
-        if(key === ")"){
+        if(key === ')'){
             this.parentesisDcha();
         }
-        if(key === "d" || key === "D"){
+        if(key === 'd' || key === 'D'){
             this.deg()
         }
-        if(key === "h" || key === "H"){
+        if(key === 'h' || key === 'H'){
             this.hyp()
         }
-        if(key === "f" || key === "F"){
+        if(key === 'f' || key === 'F'){
             this.fe()
         }
-        if(key === "q" || key === "Q"){
+        if(key === 'q' || key === 'Q'){
             this.mc()
         }
-        if(key === "g" || key === "G"){
+        if(key === 'g' || key === 'G'){
             this.ms()
         }
-        if(key === "w" || key === "W"){
+        if(key === 'w' || key === 'W'){
             this.potencia2()
         }
-        if(key === "y" || key === "Y"){
+        if(key === 'y' || key === 'Y'){
             this.potencia()
         }
-        if(key === "i" || key === "I"){
+        if(key === 'i' || key === 'I'){
             this.sin()
         }
-        if(key === "o" || key === "O"){
+        if(key === 'o' || key === 'O'){
             this.cos()
         }
-        if(key === "t" || key === "T"){
+        if(key === 't' || key === 'T'){
             this.tan()
         }
-        if(key === "z" || key === "Z"){
+        if(key === 'z' || key === 'Z'){
             this.potencia10()
         }
-        if(key === "l" || key === "L"){
+        if(key === 'l' || key === 'L'){
             this.log()
         }
-        if(key === "e" || key === "E"){
+        if(key === 'e' || key === 'E'){
             this.exp()
         }
         if(key === "Shift"){
@@ -335,7 +336,7 @@ class CalculadoraCientifica extends CalculadoraMilan{
         if(key === "Delete"){
             this.ce()
         }
-        if(key === "u" || key === "U"){
+        if(key === 'u' || key === 'U'){
             this.pi()
         }
         if(key === "!"){
@@ -428,7 +429,6 @@ class CalculadoraCientifica extends CalculadoraMilan{
         if(this.equal){
             document.querySelector('input[type=text]').value = this.pantalla;
         }
-        console.log(this.fePulsado);
     }
 
     mc(){
@@ -696,7 +696,6 @@ class CalculadoraCientifica extends CalculadoraMilan{
             this.pantalla = this.pantalla.slice(0,-this.pantalla.length-1);
             this.pantalla += Math.sqrt(numero);
         }
-        console.log("Pantalla en raiz: " + this.pantalla);
     }
 
     potencia10(){
@@ -845,7 +844,7 @@ class CalculadoraCientifica extends CalculadoraMilan{
         this.equal = false;
         if(this.fePulsado){
             if(this.contieneOperadores()){
-                var result = this.splitCadenaUltimo(this.pantalla,  /[*/+-]/);
+                var result = this.splitCadenaUltimo(this.pantalla, /[*/+-]/);
             } else{
                 var result = document.querySelector('input[type=text]').value;
             }

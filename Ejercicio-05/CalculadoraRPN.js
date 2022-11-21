@@ -4,6 +4,7 @@ class CalculadoraRPN{
         this.pila = new Array();
         this.pantalla = "";
         this.puntoPulsado = false;
+		document.querySelector('textarea').value = "";
         document.addEventListener("keydown", (event) => {
             this.tecla(event.key, event);
         });
@@ -77,7 +78,9 @@ class CalculadoraRPN{
 
     resta(){
         if(this.pila.length >= 2){
-            this.pila.push(Number(this.pila.pop()) - Number(this.pila.pop()));
+            var operando2 = Number(this.pila.pop());
+			var operando1 = Number(this.pila.pop());
+            this.pila.push(operando1 - operando2);
         }
         this.puntoPulsado = false;
         document.querySelector('textarea').value = this.mostrar();
@@ -93,7 +96,9 @@ class CalculadoraRPN{
 
     division(){
         if(this.pila.length >= 2){
-            this.pila.push(Number(this.pila.pop()) / Number(this.pila.pop()));
+            var divisor = Number(this.pila.pop());
+            var dividendo = Number(this.pila.pop());
+            this.pila.push( dividendo / divisor);
         }
         this.puntoPulsado = false;
         document.querySelector('textarea').value = this.mostrar();

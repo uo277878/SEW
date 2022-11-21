@@ -58,6 +58,7 @@ textarea {
   width: 98%;
   height: 10em;
   text-align: left;
+  resize: none;
 }
 
 /*Especificidad: 011*/
@@ -84,8 +85,10 @@ input[value="Enter"]{
 
 /*Especificidad: 011*/
 input[value="C"]{
-  grid-column: 4;
-  grid-row:7/9;
+  grid-column-start: 4;
+  grid-column-end: 5;
+  grid-row-start: 7;
+  grid-row-end: 9;
 }
 
 
