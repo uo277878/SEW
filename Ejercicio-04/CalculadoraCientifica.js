@@ -343,15 +343,24 @@ class CalculadoraCientifica extends CalculadoraMilan{
         }
     }
 
+    contieneOperadores(){
+        return (this.pantalla.includes("+") || this.pantalla.includes("-") || this.pantalla.includes("*") || this.pantalla.includes("/"));
+    }
+
+    splitCadenaUltimo(cadena, argumento){
+        var result = cadena.split(argumento);
+        result = result[result.length-1];
+        return result;
+    }
+
     digitos(num){
-        this.equal = 0;
+        this.equal = false;
         if(this.on){
             document.querySelector('input[type=text]').value = "";
             this.on = false;
         }
         var ultimoNumero = document.querySelector('input[type=text]').value.slice(-1);
         document.querySelector('input[type=text]').value += Number(num);
-        
         if(this.sqr){
             this.pantalla += "*";
             this.pantalla = Number(num);
@@ -372,9 +381,6 @@ class CalculadoraCientifica extends CalculadoraMilan{
             this.pantalla += Number(num);
             document.querySelector('input[type=text]').value += Number(num);
             this.expTecla = false;
-        }
-        if(this.fePulsado){
-            
         }
     }
 
@@ -422,6 +428,7 @@ class CalculadoraCientifica extends CalculadoraMilan{
         if(this.equal){
             document.querySelector('input[type=text]').value = this.pantalla;
         }
+        console.log(this.fePulsado);
     }
 
     mc(){
@@ -429,18 +436,16 @@ class CalculadoraCientifica extends CalculadoraMilan{
     }
 
     ms(){
-        if(this.pantalla.includes("+") || this.pantalla.includes("-") || this.pantalla.includes("*") || this.pantalla.includes("/")){
-            var result = this.pantalla.split(/[*/+-]/);
-            this.mem = result[result.length-1];
+        if(this.contieneOperadores()){
+            this.mem = this.splitCadenaUltimo(this.pantalla, /[*/+-]/);
         } else{
             this.mem = this.pantalla;
         }
     }
 
     potencia2(){
-        if(this.pantalla.includes("+") || this.pantalla.includes("-") || this.pantalla.includes("*") || this.pantalla.includes("/")){
-            var result = this.pantalla.split(/[*/+-]/);
-            var pot = result[result.length-1];
+        if(this.contieneOperadores()){
+            var pot = this.splitCadenaUltimo(this.pantalla, /[*/+-]/);
             this.pantalla = this.pantalla.slice(0,-pot.length);
             this.pantalla += "Math.pow(" + pot +",2)";
         } else{
@@ -464,43 +469,20 @@ class CalculadoraCientifica extends CalculadoraMilan{
         } else if(document.querySelector('input[type=button][name="sen"]').value == "sinh"){
             this.sinh();
         } else{
-            if(document.querySelector('input[type=button][name="deg"]').value == "RAD"){
-                if(this.pantalla.includes("+") || this.pantalla.includes("-") || this.pantalla.includes("*") || this.pantalla.includes("/")){
-                    var result = this.pantalla.split(/[*/+-]/);
-                    var seno = result[result.length-1];
-                    this.pantalla = this.pantalla.slice(0,-seno.length);
-                    this.pantalla += "Math.sin(" + seno +")";
-                } else{
-                    var seno = this.pantalla;
-                    this.pantalla = this.pantalla.slice(0,-seno.length);
-                    this.pantalla = "Math.sin(" + seno +")";
-                }
-            } else if(document.querySelector('input[type=button][name="deg"]').value == "DEG"){
-                if(this.pantalla.includes("+") || this.pantalla.includes("-") || this.pantalla.includes("*") || this.pantalla.includes("/")){
-                    var result = this.pantalla.split(/[*/+-]/);
-                    var seno = result[result.length-1];
-                    this.pantalla = this.pantalla.slice(0,-seno.length);
-                    var degrees = seno * (Math.PI / 180);
-                    this.pantalla += "Math.sin(" + degrees +")";
-                } else{
-                    var seno = this.pantalla;
-                    this.pantalla = this.pantalla.slice(0,-seno.length);
-                    var degrees = seno * (Math.PI / 180);
-                    this.pantalla = "Math.sin(" + degrees +")";
-                }
+            if(this.contieneOperadores()){
+                var seno = this.splitCadenaUltimo(this.pantalla, /[*/+-]/);
             } else{
-                if(this.pantalla.includes("+") || this.pantalla.includes("-") || this.pantalla.includes("*") || this.pantalla.includes("/")){
-                    var result = this.pantalla.split(/[*/+-]/);
-                    var seno = result[result.length-1];
-                    this.pantalla = this.pantalla.slice(0,-seno.length);
-                    var gradians = seno * Math.PI / 200;
-                    this.pantalla += "Math.sin(" + gradians + ")";
-                } else{
-                    var seno = this.pantalla;
-                    this.pantalla = this.pantalla.slice(0,-seno.length);
-                    var gradians = seno * Math.PI / 200;
-                    this.pantalla = "Math.sin(" + gradians + ")";
-                }
+                var seno = this.pantalla;
+            }
+            this.pantalla = this.pantalla.slice(0,-seno.length);
+            if(document.querySelector('input[type=button][name="deg"]').value == "RAD"){
+                this.pantalla += "Math.sin(" + seno +")";
+            } else if(document.querySelector('input[type=button][name="deg"]').value == "DEG"){
+                var degrees = seno * (Math.PI / 180);
+                this.pantalla += "Math.sin(" + degrees +")";
+            } else{
+                var gradians = seno * Math.PI / 200;
+                this.pantalla += "Math.sin(" + gradians + ")";
             }
             document.querySelector('input[type=text]').value = document.querySelector('input[type=text]').value.slice(0,-seno.length);
             document.querySelector('input[type=text]').value += "sin(" + seno + ")";
@@ -512,44 +494,23 @@ class CalculadoraCientifica extends CalculadoraMilan{
             this.acos();
         } else if(document.querySelector('input[type=button][name="cosen"]').value == "acosh"){
             this.acosh();
-        } else{
-            if(document.querySelector('input[type=button][name="deg"]').value == "RAD"){
-                if(this.pantalla.includes("+") || this.pantalla.includes("-") || this.pantalla.includes("*") || this.pantalla.includes("/")){
-                    var result = this.pantalla.split(/[*/+-]/);
-                    var coseno = result[result.length-1];
-                    this.pantalla = this.pantalla.slice(0,-coseno.length);
-                    this.pantalla += "Math.cos(" + coseno +")";
-                } else{
-                    var coseno = this.pantalla;
-                    this.pantalla = this.pantalla.slice(0,-coseno.length);
-                    this.pantalla = "Math.cos(" + coseno +")";
-                }
-            } else if(document.querySelector('input[type=button][name="deg"]').value == "DEG"){
-                if(this.pantalla.includes("+") || this.pantalla.includes("-") || this.pantalla.includes("*") || this.pantalla.includes("/")){
-                    var result = this.pantalla.split(/[*/+-]/);
-                    var coseno = result[result.length-1];
-                    this.pantalla = this.pantalla.slice(0,-coseno.length);
-                    var degrees = coseno * (Math.PI / 180);
-                    this.pantalla += "Math.cos(" + degrees +")";
-                } else{
-                    var coseno = this.pantalla;
-                    this.pantalla = this.pantalla.slice(0,-coseno.length);
-                    var degrees = coseno * (Math.PI / 180);
-                    this.pantalla = "Math.cos(" + degrees +")";
-                }
+        } else if(document.querySelector('input[type=button][name="cosen"]').value == "cosh"){
+            this.cosh();
+        }else{
+            if(this.contieneOperadores()){
+                var coseno = this.splitCadenaUltimo(this.pantalla, /[*/+-]/);
             } else{
-                if(this.pantalla.includes("+") || this.pantalla.includes("-") || this.pantalla.includes("*") || this.pantalla.includes("/")){
-                    var result = this.pantalla.split(/[*/+-]/);
-                    var coseno = result[result.length-1];
-                    this.pantalla = this.pantalla.slice(0,-coseno.length);
-                    var gradians = coseno * Math.PI / 200;
-                    this.pantalla += "Math.cos(" + gradians + ")";
-                } else{
-                    var coseno = this.pantalla;
-                    this.pantalla = this.pantalla.slice(0,-coseno.length);
-                    var gradians = coseno * Math.PI / 200;
-                    this.pantalla = "Math.cos(" + gradians + ")";
-                }
+                var coseno = this.pantalla;
+            }
+            this.pantalla = this.pantalla.slice(0,-coseno.length);
+            if(document.querySelector('input[type=button][name="deg"]').value == "RAD"){
+                this.pantalla += "Math.cos(" + coseno +")";
+            } else if(document.querySelector('input[type=button][name="deg"]').value == "DEG"){
+                var degrees = coseno * (Math.PI / 180);
+                this.pantalla += "Math.cos(" + degrees +")";
+            } else{
+                var gradians = coseno * Math.PI / 200;
+                this.pantalla += "Math.cos(" + gradians + ")";
             }
             document.querySelector('input[type=text]').value = document.querySelector('input[type=text]').value.slice(0,-coseno.length);
             document.querySelector('input[type=text]').value += "cos(" + coseno + ")";
@@ -557,441 +518,169 @@ class CalculadoraCientifica extends CalculadoraMilan{
     }
 
     tan(){
-        if(document.querySelector('input[type=button][name="deg"]').value == "RAD"){
-            if(this.pantalla.includes("+") || this.pantalla.includes("-") || this.pantalla.includes("*") || this.pantalla.includes("/")){
-                var result = this.pantalla.split(/[*/+-]/);
-                var tangente = result[result.length-1];
-                this.pantalla = this.pantalla.slice(0,-tangente.length);
-                this.pantalla += "Math.tan(" + tangente +")";
+        if(document.querySelector('input[type=button][name="tangent"]').value == "atan"){
+            this.atan();
+        } else if(document.querySelector('input[type=button][name="tangent"]').value == "atanh"){
+            this.atanh();
+        } else if(document.querySelector('input[type=button][name="tangent"]').value == "tanh"){
+            this.tanh();
+        }else{
+            if(this.contieneOperadores()){
+                var tangente = this.splitCadenaUltimo(this.pantalla, /[*/+-]/);
             } else{
                 var tangente = this.pantalla;
-                this.pantalla = this.pantalla.slice(0,-tangente.length);
-                this.pantalla = "Math.tan(" + tangente +")";
             }
-        } else if(document.querySelector('input[type=button][name="deg"]').value == "DEG"){
-            if(this.pantalla.includes("+") || this.pantalla.includes("-") || this.pantalla.includes("*") || this.pantalla.includes("/")){
-                var result = this.pantalla.split(/[*/+-]/);
-                var tangente = result[result.length-1];
-                this.pantalla = this.pantalla.slice(0,-tangente.length);
+            this.pantalla = this.pantalla.slice(0,-tangente.length);
+            if(document.querySelector('input[type=button][name="deg"]').value == "RAD"){
+                this.pantalla += "Math.tan(" + tangente +")";
+            } else if(document.querySelector('input[type=button][name="deg"]').value == "DEG"){
                 var degrees = tangente * (Math.PI / 180);
                 this.pantalla += "Math.tan(" + degrees +")";
             } else{
-                var tangente = this.pantalla;
-                this.pantalla = this.pantalla.slice(0,-tangente.length);
-                var degrees = tangente * (Math.PI / 180);
-                this.pantalla = "Math.tan(" + degrees +")";
-            }
-        } else{
-            if(this.pantalla.includes("+") || this.pantalla.includes("-") || this.pantalla.includes("*") || this.pantalla.includes("/")){
-                var result = this.pantalla.split(/[*/+-]/);
-                var tangente = result[result.length-1];
-                this.pantalla = this.pantalla.slice(0,-tangente.length);
                 var gradians = tangente * Math.PI / 200;
                 this.pantalla += "Math.tan(" + gradians + ")";
-            } else{
-                var tangente = this.pantalla;
-                this.pantalla = this.pantalla.slice(0,-tangente.length);
-                var gradians = tangente * Math.PI / 200;
-                this.pantalla = "Math.tan(" + gradians + ")";
             }
+            document.querySelector('input[type=text]').value = document.querySelector('input[type=text]').value.slice(0,-tangente.length);
+            document.querySelector('input[type=text]').value += "tan(" + tangente + ")";
         }
-        document.querySelector('input[type=text]').value = document.querySelector('input[type=text]').value.slice(0,-tangente.length);
-        document.querySelector('input[type=text]').value += "tan(" + tangente + ")";
     }
 
     asin(){
-        if(document.querySelector('input[type=button][name="deg"]').value == "RAD"){
-            if(this.pantalla.includes("+") || this.pantalla.includes("-") || this.pantalla.includes("*") || this.pantalla.includes("/")){
-                var result = this.pantalla.split(/[*/+-]/);
-                var arcoseno = result[result.length-1];
-                this.pantalla = this.pantalla.slice(0,-arcoseno.length);
-                this.pantalla += "Math.asin(" + arcoseno +")";
-            } else{
-                var arcoseno = this.pantalla;
-                this.pantalla = this.pantalla.slice(0,-arcoseno.length);
-                this.pantalla = "Math.asin(" + arcoseno +")";
-            }
-        } else if(document.querySelector('input[type=button][name="deg"]').value == "DEG"){
-            if(this.pantalla.includes("+") || this.pantalla.includes("-") || this.pantalla.includes("*") || this.pantalla.includes("/")){
-                var result = this.pantalla.split(/[*/+-]/);
-                var arcoseno = result[result.length-1];
-                this.pantalla = this.pantalla.slice(0,-arcoseno.length);
-                var degrees = arcoseno * (Math.PI / 180);
-                this.pantalla += "Math.asin(" + degrees +")";
-            } else{
-                var arcoseno = this.pantalla;
-                this.pantalla = this.pantalla.slice(0,-arcoseno.length);
-                var degrees = arcoseno * (Math.PI / 180);
-                this.pantalla = "Math.asin(" + degrees +")";
-            }
+        if(this.contieneOperadores()){
+            var arcoseno = this.splitCadenaUltimo(this.pantalla, /[*/+-]/);
         } else{
-            if(this.pantalla.includes("+") || this.pantalla.includes("-") || this.pantalla.includes("*") || this.pantalla.includes("/")){
-                var result = this.pantalla.split(/[*/+-]/);
-                var arcoseno = result[result.length-1];
-                this.pantalla = this.pantalla.slice(0,-arcoseno.length);
-                var gradians = arcoseno * Math.PI / 200;
-                this.pantalla += "Math.asin(" + gradians + ")";
-            } else{
-                var arcoseno = this.pantalla;
-                this.pantalla = this.pantalla.slice(0,-arcoseno.length);
-                var gradians = arcoseno * Math.PI / 200;
-                this.pantalla = "Math.asin(" + gradians + ")";
-            }
+            var arcoseno = this.pantalla;
+        }
+        this.pantalla = this.pantalla.slice(0,-arcoseno.length);
+        if(document.querySelector('input[type=button][name="deg"]').value == "RAD"){
+            this.pantalla += "Math.asin(" + arcoseno +")";
+        } else if(document.querySelector('input[type=button][name="deg"]').value == "DEG"){
+            var degrees = arcoseno * (Math.PI / 180);
+            this.pantalla += "Math.asin(" + degrees +")";
+        } else{
+            var gradians = arcoseno * Math.PI / 200;
+            this.pantalla += "Math.asin(" + gradians + ")";
         }
         document.querySelector('input[type=text]').value = document.querySelector('input[type=text]').value.slice(0,-arcoseno.length);
         document.querySelector('input[type=text]').value += "asin(" + arcoseno + ")";
     }
 
     acos(){
-        if(document.querySelector('input[type=button][name="deg"]').value == "RAD"){
-            if(this.pantalla.includes("+") || this.pantalla.includes("-") || this.pantalla.includes("*") || this.pantalla.includes("/")){
-                var result = this.pantalla.split(/[*/+-]/);
-                var arcocoseno = result[result.length-1];
-                this.pantalla = this.pantalla.slice(0,-arcocoseno.length);
-                this.pantalla += "Math.acos(" + arcocoseno +")";
-            } else{
-                var arcocoseno = this.pantalla;
-                this.pantalla = this.pantalla.slice(0,-arcocoseno.length);
-                this.pantalla = "Math.acos(" + arcocoseno +")";
-            }
-        } else if(document.querySelector('input[type=button][name="deg"]').value == "DEG"){
-            if(this.pantalla.includes("+") || this.pantalla.includes("-") || this.pantalla.includes("*") || this.pantalla.includes("/")){
-                var result = this.pantalla.split(/[*/+-]/);
-                var arcocoseno = result[result.length-1];
-                this.pantalla = this.pantalla.slice(0,-arcocoseno.length);
-                var degrees = arcocoseno * (Math.PI / 180);
-                this.pantalla += "Math.acos(" + degrees +")";
-            } else{
-                var arcocoseno = this.pantalla;
-                this.pantalla = this.pantalla.slice(0,-arcocoseno.length);
-                var degrees = arcocoseno * (Math.PI / 180);
-                this.pantalla = "Math.acos(" + degrees +")";
-            }
+        if(this.contieneOperadores()){
+            var arcocoseno = this.splitCadenaUltimo(this.pantalla, /[*/+-]/);
         } else{
-            if(this.pantalla.includes("+") || this.pantalla.includes("-") || this.pantalla.includes("*") || this.pantalla.includes("/")){
-                var result = this.pantalla.split(/[*/+-]/);
-                var arcocoseno = result[result.length-1];
-                this.pantalla = this.pantalla.slice(0,-arcocoseno.length);
-                var gradians = arcocoseno * Math.PI / 200;
-                this.pantalla += "Math.acos(" + gradians + ")";
-            } else{
-                var arcocoseno = this.pantalla;
-                this.pantalla = this.pantalla.slice(0,-arcocoseno.length);
-                var gradians = arcocoseno * Math.PI / 200;
-                this.pantalla = "Math.acos(" + gradians + ")";
-            }
+            var arcocoseno = this.pantalla;
+        }
+        this.pantalla = this.pantalla.slice(0,-arcocoseno.length);
+        if(document.querySelector('input[type=button][name="deg"]').value == "RAD"){
+            this.pantalla += "Math.acos(" + arcocoseno +")";
+        } else if(document.querySelector('input[type=button][name="deg"]').value == "DEG"){
+            var degrees = arcocoseno * (Math.PI / 180);
+            this.pantalla += "Math.acos(" + degrees +")";
+        } else{
+            var gradians = arcocoseno * Math.PI / 200;
+            this.pantalla += "Math.acos(" + gradians + ")";
         }
         document.querySelector('input[type=text]').value = document.querySelector('input[type=text]').value.slice(0,-arcocoseno.length);
         document.querySelector('input[type=text]').value += "acos(" + arcocoseno + ")";
     }
 
     atan(){
-        if(document.querySelector('input[type=button][name="deg"]').value == "RAD"){
-            if(this.pantalla.includes("+") || this.pantalla.includes("-") || this.pantalla.includes("*") || this.pantalla.includes("/")){
-                var result = this.pantalla.split(/[*/+-]/);
-                var arcotangente = result[result.length-1];
-                this.pantalla = this.pantalla.slice(0,-arcotangente.length);
-                this.pantalla += "Math.atan(" + arcotangente +")";
-            } else{
-                var arcotangente = this.pantalla;
-                this.pantalla = this.pantalla.slice(0,-arcotangente.length);
-                this.pantalla = "Math.atan(" + arcotangente +")";
-            }
-        } else if(document.querySelector('input[type=button][name="deg"]').value == "DEG"){
-            if(this.pantalla.includes("+") || this.pantalla.includes("-") || this.pantalla.includes("*") || this.pantalla.includes("/")){
-                var result = this.pantalla.split(/[*/+-]/);
-                var arcotangente = result[result.length-1];
-                this.pantalla = this.pantalla.slice(0,-arcotangente.length);
-                var degrees = arcotangente * (Math.PI / 180);
-                this.pantalla += "Math.atan(" + degrees +")";
-            } else{
-                var arcotangente = this.pantalla;
-                this.pantalla = this.pantalla.slice(0,-arcotangente.length);
-                var degrees = arcotangente * (Math.PI / 180);
-                this.pantalla = "Math.atan(" + degrees +")";
-            }
+        if(this.contieneOperadores()){
+            var arcotangente = this.splitCadenaUltimo(this.pantalla, /[*/+-]/);
         } else{
-            if(this.pantalla.includes("+") || this.pantalla.includes("-") || this.pantalla.includes("*") || this.pantalla.includes("/")){
-                var result = this.pantalla.split(/[*/+-]/);
-                var arcotangente = result[result.length-1];
-                this.pantalla = this.pantalla.slice(0,-arcotangente.length);
-                var gradians = arcotangente * Math.PI / 200;
-                this.pantalla += "Math.atan(" + gradians + ")";
-            } else{
-                var arcotangente = this.pantalla;
-                this.pantalla = this.pantalla.slice(0,-arcotangente.length);
-                var gradians = arcotangente * Math.PI / 200;
-                this.pantalla = "Math.atan(" + gradians + ")";
-            }
+            var arcotangente = this.pantalla;
+        }
+        this.pantalla = this.pantalla.slice(0,-arcotangente.length);
+        if(document.querySelector('input[type=button][name="deg"]').value == "RAD"){
+            this.pantalla += "Math.atan(" + arcotangente +")";
+        } else if(document.querySelector('input[type=button][name="deg"]').value == "DEG"){
+            var degrees = arcotangente * (Math.PI / 180);
+            this.pantalla += "Math.atan(" + degrees +")";
+        } else{
+            var gradians = arcotangente * Math.PI / 200;
+            this.pantalla += "Math.atan(" + gradians + ")";
         }
         document.querySelector('input[type=text]').value = document.querySelector('input[type=text]').value.slice(0,-arcotangente.length);
         document.querySelector('input[type=text]').value += "atan(" + arcotangente + ")";
     }
 
     sinh(){
-        if(document.querySelector('input[type=button][name="deg"]').value == "RAD"){
-            if(this.pantalla.includes("+") || this.pantalla.includes("-") || this.pantalla.includes("*") || this.pantalla.includes("/")){
-                var result = this.pantalla.split(/[*/+-]/);
-                var hypsen = result[result.length-1];
-                this.pantalla = this.pantalla.slice(0,-hypsen.length);
-                this.pantalla += "Math.sinh(" + hypsen +")";
-            } else{
-                var hypsen = this.pantalla;
-                this.pantalla = this.pantalla.slice(0,-hypsen.length);
-                this.pantalla = "Math.sinh(" + hypsen +")";
-            }
-        } else if(document.querySelector('input[type=button][name="deg"]').value == "DEG"){
-            if(this.pantalla.includes("+") || this.pantalla.includes("-") || this.pantalla.includes("*") || this.pantalla.includes("/")){
-                var result = this.pantalla.split(/[*/+-]/);
-                var hypsen = result[result.length-1];
-                this.pantalla = this.pantalla.slice(0,-hypsen.length);
-                var degrees = hypsen * (Math.PI / 180);
-                this.pantalla += "Math.sinh(" + degrees +")";
-            } else{
-                var hypsen = this.pantalla;
-                this.pantalla = this.pantalla.slice(0,-hypsen.length);
-                var degrees = hypsen * (Math.PI / 180);
-                this.pantalla = "Math.sinh(" + degrees +")";
-            }
+        if(this.contieneOperadores()){
+            var hypsen = this.splitCadenaUltimo(this.pantalla, /[*/+-]/);
         } else{
-            if(this.pantalla.includes("+") || this.pantalla.includes("-") || this.pantalla.includes("*") || this.pantalla.includes("/")){
-                var result = this.pantalla.split(/[*/+-]/);
-                var hypsen = result[result.length-1];
-                this.pantalla = this.pantalla.slice(0,-hypsen.length);
-                var gradians = hypsen * Math.PI / 200;
-                this.pantalla += "Math.sinh(" + gradians + ")";
-            } else{
-                var hypsen = this.pantalla;
-                this.pantalla = this.pantalla.slice(0,-hypsen.length);
-                var gradians = hypsen * Math.PI / 200;
-                this.pantalla = "Math.sinh(" + gradians + ")";
-            }
+            var hypsen = this.pantalla;
         }
+        this.pantalla = this.pantalla.slice(0,-hypsen.length);
+        this.pantalla += "Math.sinh(" + hypsen +")";
         document.querySelector('input[type=text]').value = document.querySelector('input[type=text]').value.slice(0,-hypsen.length);
         document.querySelector('input[type=text]').value += "sinh(" + hypsen + ")";
     }
 
     cosh(){
-        if(document.querySelector('input[type=button][name="deg"]').value == "RAD"){
-            if(this.pantalla.includes("+") || this.pantalla.includes("-") || this.pantalla.includes("*") || this.pantalla.includes("/")){
-                var result = this.pantalla.split(/[*/+-]/);
-                var hypcos = result[result.length-1];
-                this.pantalla = this.pantalla.slice(0,-hypcos.length);
-                this.pantalla += "Math.cosh(" + hypcos +")";
-            } else{
-                var hypcos = this.pantalla;
-                this.pantalla = this.pantalla.slice(0,-hypcos.length);
-                this.pantalla = "Math.cosh(" + hypcos +")";
-            }
-        } else if(document.querySelector('input[type=button][name="deg"]').value == "DEG"){
-            if(this.pantalla.includes("+") || this.pantalla.includes("-") || this.pantalla.includes("*") || this.pantalla.includes("/")){
-                var result = this.pantalla.split(/[*/+-]/);
-                var hypcos = result[result.length-1];
-                this.pantalla = this.pantalla.slice(0,-hypcos.length);
-                var degrees = hypcos * (Math.PI / 180);
-                this.pantalla += "Math.cosh(" + degrees +")";
-            } else{
-                var hypcos = this.pantalla;
-                this.pantalla = this.pantalla.slice(0,-hypcos.length);
-                var degrees = hypcos * (Math.PI / 180);
-                this.pantalla = "Math.cosh(" + degrees +")";
-            }
+        if(this.contieneOperadores()){
+            var hypcos = this.splitCadenaUltimo(this.pantalla, /[*/+-]/);
         } else{
-            if(this.pantalla.includes("+") || this.pantalla.includes("-") || this.pantalla.includes("*") || this.pantalla.includes("/")){
-                var result = this.pantalla.split(/[*/+-]/);
-                var hypcos = result[result.length-1];
-                this.pantalla = this.pantalla.slice(0,-hypcos.length);
-                var gradians = hypcos * Math.PI / 200;
-                this.pantalla += "Math.cosh(" + gradians + ")";
-            } else{
-                var hypcos = this.pantalla;
-                this.pantalla = this.pantalla.slice(0,-hypcos.length);
-                var gradians = hypcos * Math.PI / 200;
-                this.pantalla = "Math.cosh(" + gradians + ")";
-            }
+            var hypcos = this.pantalla;
         }
+        this.pantalla = this.pantalla.slice(0,-hypcos.length);
+        this.pantalla += "Math.cosh(" + hypcos +")";
         document.querySelector('input[type=text]').value = document.querySelector('input[type=text]').value.slice(0,-hypcos.length);
         document.querySelector('input[type=text]').value += "cosh(" + hypcos + ")";
     }
 
     tanh(){
-        if(document.querySelector('input[type=button][name="deg"]').value == "RAD"){
-            if(this.pantalla.includes("+") || this.pantalla.includes("-") || this.pantalla.includes("*") || this.pantalla.includes("/")){
-                var result = this.pantalla.split(/[*/+-]/);
-                var hyptan = result[result.length-1];
-                this.pantalla = this.pantalla.slice(0,-hyptan.length);
-                this.pantalla += "Math.cos(" + hyptan +")";
-            } else{
-                var hyptan = this.pantalla;
-                this.pantalla = this.pantalla.slice(0,-hyptan.length);
-                this.pantalla = "Math.cos(" + hyptan +")";
-            }
-        } else if(document.querySelector('input[type=button][name="deg"]').value == "DEG"){
-            if(this.pantalla.includes("+") || this.pantalla.includes("-") || this.pantalla.includes("*") || this.pantalla.includes("/")){
-                var result = this.pantalla.split(/[*/+-]/);
-                var hyptan = result[result.length-1];
-                this.pantalla = this.pantalla.slice(0,-hyptan.length);
-                var degrees = hyptan * (Math.PI / 180);
-                this.pantalla += "Math.cos(" + degrees +")";
-            } else{
-                var hyptan = this.pantalla;
-                this.pantalla = this.pantalla.slice(0,-hyptan.length);
-                var degrees = hyptan * (Math.PI / 180);
-                this.pantalla = "Math.cos(" + degrees +")";
-            }
+        if(this.contieneOperadores()){
+            var hyptan = this.splitCadenaUltimo(this.pantalla, /[*/+-]/);
         } else{
-            if(this.pantalla.includes("+") || this.pantalla.includes("-") || this.pantalla.includes("*") || this.pantalla.includes("/")){
-                var result = this.pantalla.split(/[*/+-]/);
-                var hyptan = result[result.length-1];
-                this.pantalla = this.pantalla.slice(0,-hyptan.length);
-                var gradians = hyptan * Math.PI / 200;
-                this.pantalla += "Math.cos(" + gradians + ")";
-            } else{
-                var hyptan = this.pantalla;
-                this.pantalla = this.pantalla.slice(0,-hyptan.length);
-                var gradians = hyptan * Math.PI / 200;
-                this.pantalla = "Math.cos(" + gradians + ")";
-            }
+            var hyptan = this.pantalla;
         }
+        this.pantalla = this.pantalla.slice(0,-hyptan.length);
+        this.pantalla += "Math.tanh(" + hyptan +")";
         document.querySelector('input[type=text]').value = document.querySelector('input[type=text]').value.slice(0,-hyptan.length);
-        document.querySelector('input[type=text]').value += "cos(" + hyptan + ")";
+        document.querySelector('input[type=text]').value += "tanh(" + hyptan + ")";
     }
 
     asinh(){
-        if(document.querySelector('input[type=button][name="deg"]').value == "RAD"){
-            if(this.pantalla.includes("+") || this.pantalla.includes("-") || this.pantalla.includes("*") || this.pantalla.includes("/")){
-                var result = this.pantalla.split(/[*/+-]/);
-                var ahypsen = result[result.length-1];
-                this.pantalla = this.pantalla.slice(0,-ahypsen.length);
-                this.pantalla += "Math.asinh(" + ahypsen +")";
-            } else{
-                var ahypsen = this.pantalla;
-                this.pantalla = this.pantalla.slice(0,-ahypsen.length);
-                this.pantalla = "Math.asinh(" + ahypsen +")";
-            }
-        } else if(document.querySelector('input[type=button][name="deg"]').value == "DEG"){
-            if(this.pantalla.includes("+") || this.pantalla.includes("-") || this.pantalla.includes("*") || this.pantalla.includes("/")){
-                var result = this.pantalla.split(/[*/+-]/);
-                var ahypsen = result[result.length-1];
-                this.pantalla = this.pantalla.slice(0,-ahypsen.length);
-                var degrees = ahypsen * (Math.PI / 180);
-                this.pantalla += "Math.asinh(" + degrees +")";
-            } else{
-                var ahypsen = this.pantalla;
-                this.pantalla = this.pantalla.slice(0,-ahypsen.length);
-                var degrees = ahypsen * (Math.PI / 180);
-                this.pantalla = "Math.asinh(" + degrees +")";
-            }
+        if(this.contieneOperadores()){
+            var ahypsen = this.splitCadenaUltimo(this.pantalla, /[*/+-]/);
         } else{
-            if(this.pantalla.includes("+") || this.pantalla.includes("-") || this.pantalla.includes("*") || this.pantalla.includes("/")){
-                var result = this.pantalla.split(/[*/+-]/);
-                var ahypsen = result[result.length-1];
-                this.pantalla = this.pantalla.slice(0,-ahypsen.length);
-                var gradians = ahypsen * Math.PI / 200;
-                this.pantalla += "Math.asinh(" + gradians + ")";
-            } else{
-                var ahypsen = this.pantalla;
-                this.pantalla = this.pantalla.slice(0,-ahypsen.length);
-                var gradians = ahypsen * Math.PI / 200;
-                this.pantalla = "Math.asinh(" + gradians + ")";
-            }
+            var ahypsen = this.pantalla;
         }
+        this.pantalla = this.pantalla.slice(0,-ahypsen.length);
+        this.pantalla += "Math.asinh(" + ahypsen +")";
         document.querySelector('input[type=text]').value = document.querySelector('input[type=text]').value.slice(0,-ahypsen.length);
         document.querySelector('input[type=text]').value += "asinh(" + ahypsen + ")";
     }
 
     acosh(){
-        if(document.querySelector('input[type=button][name="deg"]').value == "RAD"){
-            if(this.pantalla.includes("+") || this.pantalla.includes("-") || this.pantalla.includes("*") || this.pantalla.includes("/")){
-                var result = this.pantalla.split(/[*/+-]/);
-                var ahypcos = result[result.length-1];
-                this.pantalla = this.pantalla.slice(0,-ahypcos.length);
-                this.pantalla += "Math.acosh(" + ahypcos +")";
-            } else{
-                var ahypcos = this.pantalla;
-                this.pantalla = this.pantalla.slice(0,-ahypcos.length);
-                this.pantalla = "Math.acosh(" + ahypcos +")";
-            }
-        } else if(document.querySelector('input[type=button][name="deg"]').value == "DEG"){
-            if(this.pantalla.includes("+") || this.pantalla.includes("-") || this.pantalla.includes("*") || this.pantalla.includes("/")){
-                var result = this.pantalla.split(/[*/+-]/);
-                var ahypcos = result[result.length-1];
-                this.pantalla = this.pantalla.slice(0,-ahypcos.length);
-                var degrees = ahypcos * (Math.PI / 180);
-                this.pantalla += "Math.acosh(" + degrees +")";
-            } else{
-                var ahypcos = this.pantalla;
-                this.pantalla = this.pantalla.slice(0,-ahypcos.length);
-                var degrees = ahypcos * (Math.PI / 180);
-                this.pantalla = "Math.acosh(" + degrees +")";
-            }
+        if(this.contieneOperadores()){
+            var ahypcos = this.splitCadenaUltimo(this.pantalla, /[*/+-]/);
         } else{
-            if(this.pantalla.includes("+") || this.pantalla.includes("-") || this.pantalla.includes("*") || this.pantalla.includes("/")){
-                var result = this.pantalla.split(/[*/+-]/);
-                var ahypcos = result[result.length-1];
-                this.pantalla = this.pantalla.slice(0,-ahypcos.length);
-                var gradians = ahypcos * Math.PI / 200;
-                this.pantalla += "Math.acosh(" + gradians + ")";
-            } else{
-                var ahypcos = this.pantalla;
-                this.pantalla = this.pantalla.slice(0,-ahypcos.length);
-                var gradians = ahypcos * Math.PI / 200;
-                this.pantalla = "Math.acosh(" + gradians + ")";
-            }
+            var ahypcos = this.pantalla;
         }
+        this.pantalla = this.pantalla.slice(0,-ahypcos.length);
+        this.pantalla += "Math.acosh(" + ahypcos +")";
         document.querySelector('input[type=text]').value = document.querySelector('input[type=text]').value.slice(0,-ahypcos.length);
         document.querySelector('input[type=text]').value += "acosh(" + ahypcos + ")";
     }
 
     atanh(){
-        if(document.querySelector('input[type=button][name="deg"]').value == "RAD"){
-            if(this.pantalla.includes("+") || this.pantalla.includes("-") || this.pantalla.includes("*") || this.pantalla.includes("/")){
-                var result = this.pantalla.split(/[*/+-]/);
-                var ahyptan = result[result.length-1];
-                this.pantalla = this.pantalla.slice(0,-ahyptan.length);
-                this.pantalla += "Math.atanh(" + ahyptan +")";
-            } else{
-                var ahyptan = this.pantalla;
-                this.pantalla = this.pantalla.slice(0,-ahyptan.length);
-                this.pantalla = "Math.atanh(" + ahyptan +")";
-            }
-        } else if(document.querySelector('input[type=button][name="deg"]').value == "DEG"){
-            if(this.pantalla.includes("+") || this.pantalla.includes("-") || this.pantalla.includes("*") || this.pantalla.includes("/")){
-                var result = this.pantalla.split(/[*/+-]/);
-                var ahyptan = result[result.length-1];
-                this.pantalla = this.pantalla.slice(0,-ahyptan.length);
-                var degrees = ahyptan * (Math.PI / 180);
-                this.pantalla += "Math.atanh(" + degrees +")";
-            } else{
-                var ahyptan = this.pantalla;
-                this.pantalla = this.pantalla.slice(0,-ahyptan.length);
-                var degrees = ahyptan * (Math.PI / 180);
-                this.pantalla = "Math.atanh(" + degrees +")";
-            }
+        if(this.contieneOperadores()){
+            var ahyptan = this.splitCadenaUltimo(this.pantalla, /[*/+-]/);
         } else{
-            if(this.pantalla.includes("+") || this.pantalla.includes("-") || this.pantalla.includes("*") || this.pantalla.includes("/")){
-                var result = this.pantalla.split(/[*/+-]/);
-                var ahyptan = result[result.length-1];
-                this.pantalla = this.pantalla.slice(0,-ahyptan.length);
-                var gradians = ahyptan * Math.PI / 200;
-                this.pantalla += "Math.atanh(" + gradians + ")";
-            } else{
-                var ahyptan = this.pantalla;
-                this.pantalla = this.pantalla.slice(0,-ahyptan.length);
-                var gradians = ahyptan * Math.PI / 200;
-                this.pantalla = "Math.atanh(" + gradians + ")";
-            }
+            var ahyptan = this.pantalla;
         }
+        this.pantalla = this.pantalla.slice(0,-ahyptan.length);
+        this.pantalla += "Math.atanh(" + ahyptan +")";
         document.querySelector('input[type=text]').value = document.querySelector('input[type=text]').value.slice(0,-ahyptan.length);
-        document.querySelector('input[type=text]').value += "cos(" + ahyptan + ")";
+        document.querySelector('input[type=text]').value += "atanh(" + ahyptan + ")";
     }
 
     raiz(){
-        //super.raiz();
         this.sqr = true;
-        if(this.pantalla.includes("+") || this.pantalla.includes("-") || this.pantalla.includes("*") || this.pantalla.includes("/")){
-            var result = this.pantalla.split(/[+-/*]/);
-            result = result[result.length-1];
+        if(this.contieneOperadores()){
+            var result = this.splitCadenaUltimo(this.pantalla, /[*/+-]/);
             if(result.includes("(")){
                 result = result.slice(1,result.length);
             }
@@ -999,8 +688,6 @@ class CalculadoraCientifica extends CalculadoraMilan{
             document.querySelector('input[type=text]').value = document.querySelector('input[type=text]').value.slice(0,-result.length);
             document.querySelector('input[type=text]').value += "√(" + result + ")";
             this.pantalla = this.pantalla.slice(0,-result.length-1);
-            console.log(this.pantalla);
-            //this.pantalla += this.pantalla.substring(0,this.pantalla.length-result.length-1) + signo + Math.sqrt(result);
             this.pantalla += signo + Math.sqrt(result);
         } else{
             document.querySelector('input[type=text]').value = "";
@@ -1016,34 +703,28 @@ class CalculadoraCientifica extends CalculadoraMilan{
         if(this.pantalla.length == 0){
             this.pantalla += Math.pow(10,0);
         } else{
-            if(this.pantalla.includes("+") || this.pantalla.includes("-") || this.pantalla.includes("*") || this.pantalla.includes("/")){
-                var result = this.pantalla.split(/[*/+-]/);
-                var ultimo = result[result.length-1];
-                this.pantalla = this.pantalla.slice(0,-ultimo.length);
-                this.pantalla += Math.pow(10,ultimo);
+            if(this.contieneOperadores()){
+                var ultimo = this.splitCadenaUltimo(this.pantalla, /[*/+-]/);
             } else{
                 var ultimo = this.pantalla;
-                this.pantalla = this.pantalla.slice(0,-ultimo.length);
-                this.pantalla += Math.pow(10,ultimo);
             }
         }
+        this.pantalla = this.pantalla.slice(0,-ultimo.length);
+        this.pantalla += Math.pow(10,ultimo);
         document.querySelector('input[type=text]').value = document.querySelector('input[type=text]').value.slice(0,-ultimo.length);
-        document.querySelector('input[type=text]').value += Number(eval(this.pantalla));
+        document.querySelector('input[type=text]').value = this.pantalla;
     }
 
     log(){
-        if(this.pantalla.includes("+") || this.pantalla.includes("-") || this.pantalla.includes("*") || this.pantalla.includes("/")){
-            var result = this.pantalla.split(/[*/+-]/);
-            var ultimo = result[result.length-1];
-            this.pantalla = this.pantalla.slice(0,-ultimo.length);
-            this.pantalla += Math.log10(ultimo);
+        if(this.contieneOperadores()){
+            var ultimo = this.splitCadenaUltimo(this.pantalla, /[*/+-]/);
         } else{
             var ultimo = this.pantalla;
-            this.pantalla = this.pantalla.slice(0,-ultimo.length);
-            this.pantalla += Math.log10(ultimo);
         }
+        this.pantalla = this.pantalla.slice(0,-ultimo.length);
+        this.pantalla += Math.log10(ultimo);
         document.querySelector('input[type=text]').value = document.querySelector('input[type=text]').value.slice(0,-ultimo.length);
-        document.querySelector('input[type=text]').value += Number(eval(this.pantalla));
+        document.querySelector('input[type=text]').value = this.pantalla;
     }
 
     exp(){
@@ -1085,21 +766,13 @@ class CalculadoraCientifica extends CalculadoraMilan{
 
     ce(){
         if(this.pantalla.includes("%")){
-            var result = this.pantalla.split("%");
-            var ultimo = result[result.length-1];
-
-            var resultVisual = document.querySelector('input[type=text]').value.split(" Mod ");
-            var ultimoVisual = resultVisual[resultVisual.length-1];
-
+            var ultimo = this.splitCadenaUltimo(this.pantalla, "%");
+            var ultimoVisual = this.splitCadenaUltimo(document.querySelector('input[type=text]').value, " Mod ");
             this.pantalla = this.pantalla.slice(0,-ultimo.length);
             document.querySelector('input[type=text]').value = document.querySelector('input[type=text]').value.slice(0,-ultimoVisual.length);
-        } else if(this.pantalla.includes("+") || this.pantalla.includes("-") || this.pantalla.includes("*") || this.pantalla.includes("/")){
-            var result = this.pantalla.split(/[*/+-]/);
-            var ultimo = result[result.length-1];
-
-            var resultVisual = document.querySelector('input[type=text]').value.split(/[*/+-]/);
-            var ultimoVisual = resultVisual[resultVisual.length-1];
-
+        } else if(this.contieneOperadores()){
+            var ultimo = this.splitCadenaUltimo(this.pantalla, /[*/+-]/);
+            var ultimoVisual = this.splitCadenaUltimo(document.querySelector('input[type=text]').value, /[*/+-]/);
             this.pantalla = this.pantalla.slice(0,-ultimo.length);
             document.querySelector('input[type=text]').value = document.querySelector('input[type=text]').value.slice(0,-ultimoVisual.length);
         } else{
@@ -1107,16 +780,55 @@ class CalculadoraCientifica extends CalculadoraMilan{
             document.querySelector('input[type=text]').value = 0;
 			this.on = true;
         }
+        if(this.sqr){
+            this.sqr = false;
+        }
     }
 
     borrar(){
-        super.borrar();
-        document.querySelector('input[type=text]').value = document.querySelector('input[type=text]').value.slice(0,-1);
+        if(this.contieneDiferenteVisualmente()){
+            this.ce();
+        } else if(this.pantalla.includes("%")){
+            if(this.pantalla.slice(-1) == "%"){
+                this.pantalla = this.pantalla.slice(0,-1);
+                document.querySelector('input[type=text]').value = document.querySelector('input[type=text]').value.slice(0,-5);
+            } else{
+                var ultimo = this.splitCadenaUltimo(this.pantalla, "%");
+                var ultimoVisual = this.splitCadenaUltimo(document.querySelector('input[type=text]').value, " Mod ");
+    
+                this.pantalla = this.pantalla.slice(0,-ultimo.length);
+                document.querySelector('input[type=text]').value = document.querySelector('input[type=text]').value.slice(0,-ultimoVisual.length);
+            }
+        } else if(this.pantalla.includes("**")){
+            if(this.pantalla.slice(-2) == "**"){
+                this.pantalla = this.pantalla.slice(0,-2);
+                document.querySelector('input[type=text]').value = document.querySelector('input[type=text]').value.slice(0,-1);
+            } else{
+                var ultimo = this.splitCadenaUltimo(this.pantalla, "**");
+                var ultimoVisual = this.splitCadenaUltimo(document.querySelector('input[type=text]').value, "^");
+    
+                this.pantalla = this.pantalla.slice(0,-ultimo.length);
+                document.querySelector('input[type=text]').value = document.querySelector('input[type=text]').value.slice(0,-ultimoVisual.length);
+            }
+        } else{
+            super.borrar();
+        }
+        if(this.sqr){
+            this.sqr = false;
+        }
         if(document.querySelector('input[type=text]').value == ""){
             document.querySelector('input[type=text]').value = 0;
             this.on = true;
-			this.pantalla = "";
+            this.pantalla = "";
         }
+    }
+
+    contieneDiferenteVisualmente(){
+        var visual = document.querySelector('input[type=text]').value;
+        return visual.includes("sqr") || visual.includes("fact") || visual.includes("sin") || visual.includes("cos")
+            || visual.includes("tan") || visual.includes("sinh") || visual.includes("cosh") || visual.includes("tanh")
+            || visual.includes("asin") || visual.includes("acos") || visual.includes("atan") || visual.includes("asinh")
+            || visual.includes("acosh") || visual.includes("atanh") || visual.includes("√");
     }
 
     pi(){
@@ -1132,64 +844,34 @@ class CalculadoraCientifica extends CalculadoraMilan{
         this.sqr = false;
         this.equal = false;
         if(this.fePulsado){
-            if(this.pantalla.includes("+") || this.pantalla.includes("-") || this.pantalla.includes("*") || this.pantalla.includes("/")){
-                var result = this.pantalla.split(/[*/+-]/);
-                var ultimo = result[result.length-1];
-                if(ultimo.length > 1){
-                    var primerNumero = ultimo.substring(0,1);
-                    var restoNumero = ultimo.substring(1,ultimo.length);
-                    document.querySelector('input[type=text]').value = document.querySelector('input[type=text]').value.slice(0,-ultimo.length);
-                    document.querySelector('input[type=text]').value += primerNumero + "," + restoNumero;
-                    document.querySelector('input[type=text]').value += "e+" + restoNumero.length;
-                } else{
-                    document.querySelector('input[type=text]').value += ",e+0";
-                }
+            if(this.contieneOperadores()){
+                var result = this.splitCadenaUltimo(this.pantalla,  /[*/+-]/);
             } else{
-                var valor = document.querySelector('input[type=text]').value;
-                if(valor.length > 1){
-                    var primerNumero = valor.substring(0,1);
-                    var restoNumero = valor.substring(1,valor.length);
-                    document.querySelector('input[type=text]').value = document.querySelector('input[type=text]').value.slice(0,-valor.length);
-                    document.querySelector('input[type=text]').value += primerNumero + "," + restoNumero;
-                    document.querySelector('input[type=text]').value += "e+" + restoNumero.length;
-                } else{
-                    document.querySelector('input[type=text]').value += ",e+0";
-                }
+                var result = document.querySelector('input[type=text]').value;
+            }
+            if(result.length > 1){
+                var primerNumero = result.substring(0,1);
+                var restoNumero = result.substring(1,result.length);
+                document.querySelector('input[type=text]').value = document.querySelector('input[type=text]').value.slice(0,-result.length);
+                document.querySelector('input[type=text]').value += primerNumero + "," + restoNumero;
+                document.querySelector('input[type=text]').value += "e+" + restoNumero.length;
+            } else{
+                document.querySelector('input[type=text]').value += ",e+0";
             }
         }
         this.pantalla += "*";
         document.querySelector('input[type=text]').value += "*";
-        if(this.pantalla.includes(",e+")){
-            var numAnterior = this.pantalla.split(",");
-            numAnterior = numAnterior[0];
-            if(numAnterior.includes("+") || numAnterior.includes("-") || numAnterior.includes("/") || numAnterior.includes("*")){
-                numAnterior = numAnterior.split(/[*/+-]/);
-                numAnterior = numAnterior[numAnterior.length-1];
-            } 
-            var numPosterior = this.pantalla.split(",e+");
-            numPosterior = numPosterior[1];
-            if(numPosterior == 0){
-                this.pantalla = this.pantalla.replace(",e+0","");
-            } else{
-                var multiplicar = 10**numPosterior;
-                this.pantalla = this.pantalla.replace(numAnterior + ",e+" + numPosterior,numAnterior*multiplicar);
-            }
-            document.querySelector('input[type=text]').value = this.pantalla;
-        }
+        this.cambiarExponente();
     }
 
     factorial(){
-        if(this.pantalla.includes("+") || this.pantalla.includes("-") || this.pantalla.includes("*") || this.pantalla.includes("/")){
-            var result = this.pantalla.split(/[*/+-]/);
-            var n = result[result.length - 1];
-            if(n.includes("(")){
-                n = n.slice(1,n.length);
-            }
+        if(this.contieneOperadores()){
+            var n = this.splitCadenaUltimo(this.pantalla, /[*/+-]/);
         } else{
             var n = document.querySelector('input[type=text]').value;
-            if(n.includes("(")){
-                n = n.slice(1,n.length);
-            }
+        }
+        if(n.includes("(")){
+            n = n.slice(1,n.length);
         }
         var total = 1;
             for (var i=1; i<=n; i++) {
@@ -1207,56 +889,30 @@ class CalculadoraCientifica extends CalculadoraMilan{
         this.sqr = false;
         this.equal = false;
         if(this.fePulsado){
-            if(this.pantalla.includes("+") || this.pantalla.includes("-") || this.pantalla.includes("*") || this.pantalla.includes("/")){
-                var result = this.pantalla.split(/[*/+-]/);
-                var ultimo = result[result.length-1];
-                if(ultimo.length > 1){
-                    var primerNumero = ultimo.substring(0,1);
-                    var restoNumero = ultimo.substring(1,ultimo.length);
-                    document.querySelector('input[type=text]').value = document.querySelector('input[type=text]').value.slice(0,-ultimo.length);
-                    document.querySelector('input[type=text]').value += primerNumero + "," + restoNumero;
-                    document.querySelector('input[type=text]').value += "e+" + restoNumero.length;
-                } else{
-                    document.querySelector('input[type=text]').value += ",e+0";
-                }
+            if(this.contieneOperadores()){
+                var result = this.splitCadenaUltimo(this.pantalla,  /[*/+-]/);
             } else{
-                var valor = document.querySelector('input[type=text]').value;
-                if(valor.length > 1){
-                    var primerNumero = valor.substring(0,1);
-                    var restoNumero = valor.substring(1,valor.length);
-                    document.querySelector('input[type=text]').value = document.querySelector('input[type=text]').value.slice(0,-valor.length);
-                    document.querySelector('input[type=text]').value += primerNumero + "," + restoNumero;
-                    document.querySelector('input[type=text]').value += "e+" + restoNumero.length;
-                } else{
-                    document.querySelector('input[type=text]').value += ",e+0";
-                }
+                var result = document.querySelector('input[type=text]').value;
+            }
+            if(result.length > 1){
+                var primerNumero = result.substring(0,1);
+                var restoNumero = result.substring(1,result.length);
+                document.querySelector('input[type=text]').value = document.querySelector('input[type=text]').value.slice(0,-result.length);
+                document.querySelector('input[type=text]').value += primerNumero + "," + restoNumero;
+                document.querySelector('input[type=text]').value += "e+" + restoNumero.length;
+            } else{
+                document.querySelector('input[type=text]').value += ",e+0";
             }
         }
         this.pantalla += "-";
         document.querySelector('input[type=text]').value += "-";
-        if(this.pantalla.includes(",e+")){
-            var numAnterior = this.pantalla.split(",");
-            numAnterior = numAnterior[0];
-            if(numAnterior.includes("+") || numAnterior.includes("-") || numAnterior.includes("/") || numAnterior.includes("*")){
-                numAnterior = numAnterior.split(/[*/+-]/);
-                numAnterior = numAnterior[numAnterior.length-1];
-            } 
-            var numPosterior = this.pantalla.split(",e+");
-            numPosterior = numPosterior[1].replace(/[*/+-]/,"");
-            if(numPosterior == 0){
-                this.pantalla = this.pantalla.replace(",e+0","");
-            } else{
-                var multiplicar = 10**numPosterior;
-                this.pantalla = this.pantalla.replace(numAnterior + ",e+" + numPosterior,numAnterior*multiplicar);
-            }
-            //document.querySelector('input[type=text]').value = this.pantalla;
-        }
+        this.cambiarExponente();
     }
 
     cambiarSigno(){
-        if(this.pantalla.includes("+") || this.pantalla.includes("-") || this.pantalla.includes("*") || this.pantalla.includes("/")){
+        if(this.contieneOperadores()){
             var result = this.pantalla.split(/[*/+-]/);
-            var ultimo = result[result.length - 1];
+            var ultimo = result[result.length-1];
             var operador = this.pantalla.slice(-ultimo.length-1,-ultimo.length);
             if(operador == "+" || operador == "-"){
                 document.querySelector('input[type=text]').value = document.querySelector('input[type=text]').value.slice(0,-ultimo.length-1);
@@ -1285,53 +941,43 @@ class CalculadoraCientifica extends CalculadoraMilan{
         this.on = false;
         this.sqr = false;
         this.equal = false;
-        
         if(this.fePulsado){
-            if(this.pantalla.includes("+") || this.pantalla.includes("-") || this.pantalla.includes("*") || this.pantalla.includes("/")){
-                var result = this.pantalla.split(/[*/+-]/);
-                var ultimo = result[result.length-1];
-                if(ultimo.length > 1){
-                    var primerNumero = ultimo.substring(0,1);
-                    var restoNumero = ultimo.substring(1,ultimo.length);
-                    document.querySelector('input[type=text]').value = document.querySelector('input[type=text]').value.slice(0,-ultimo.length);
-                    document.querySelector('input[type=text]').value += primerNumero + "," + restoNumero;
-                    document.querySelector('input[type=text]').value += "e+" + restoNumero.length;
-                } else{
-                    document.querySelector('input[type=text]').value += ",e+0";
-                }
+            if(this.contieneOperadores()){
+                var result = this.splitCadenaUltimo(this.pantalla,  /[*/+-]/);
             } else{
-                var valor = document.querySelector('input[type=text]').value;
-                if(valor.length > 1){
-                    var primerNumero = valor.substring(0,1);
-                    var restoNumero = valor.substring(1,valor.length);
-                    document.querySelector('input[type=text]').value = document.querySelector('input[type=text]').value.slice(0,-valor.length);
-                    document.querySelector('input[type=text]').value += primerNumero + "," + restoNumero;
-                    document.querySelector('input[type=text]').value += "e+" + restoNumero.length;
-                } else{
-                    document.querySelector('input[type=text]').value += ",e+0";
-                }
+                var result = document.querySelector('input[type=text]').value;
+            }
+            if(result.length > 1){
+                var primerNumero = result.substring(0,1);
+                var restoNumero = result.substring(1,result.length);
+                document.querySelector('input[type=text]').value = document.querySelector('input[type=text]').value.slice(0,-result.length);
+                document.querySelector('input[type=text]').value += primerNumero + "," + restoNumero;
+                document.querySelector('input[type=text]').value += "e+" + restoNumero.length;
+            } else{
+                document.querySelector('input[type=text]').value += ",e+0";
             }
         }
         this.pantalla += "+";
         document.querySelector('input[type=text]').value += "+";
+        this.cambiarExponente();
+    }
+
+    cambiarExponente(){
         if(this.pantalla.includes(",e+")){
             var numAnterior = this.pantalla.split(",");
             numAnterior = numAnterior[0];
-            if(numAnterior.includes("+") || numAnterior.includes("-") || numAnterior.includes("/") || numAnterior.includes("*")){
-                numAnterior = numAnterior.split(/[*/+-]/);
-                numAnterior = numAnterior[numAnterior.length-1];
+            if(this.contieneOperadores()){
+                numAnterior = this.splitCadenaUltimo(numAnterior, /[*/+-]/);
             } 
             var numPosterior = this.pantalla.split(",e+");
-            numPosterior = numPosterior[1].replace(/[*/+-]/,"");
+            numPosterior = numPosterior[1].slice(0,-1);
             if(numPosterior == 0){
                 this.pantalla = this.pantalla.replace(",e+0","");
             } else{
                 var multiplicar = 10**numPosterior;
                 this.pantalla = this.pantalla.replace(numAnterior + ",e+" + numPosterior,numAnterior*multiplicar);
             }
-            //document.querySelector('input[type=text]').value = this.pantalla;
         }
-        
     }
 
     parentesisIzq(){
@@ -1357,54 +1003,27 @@ class CalculadoraCientifica extends CalculadoraMilan{
         this.sqr = false;
         this.equal = false;
         if(this.fePulsado){
-            if(this.pantalla.includes("+") || this.pantalla.includes("-") || this.pantalla.includes("*") || this.pantalla.includes("/")){
-                var result = this.pantalla.split(/[*/+-]/);
-                var ultimo = result[result.length-1];
-                if(ultimo.length > 1){
-                    var primerNumero = ultimo.substring(0,1);
-                    var restoNumero = ultimo.substring(1,ultimo.length);
-                    document.querySelector('input[type=text]').value = document.querySelector('input[type=text]').value.slice(0,-ultimo.length);
-                    document.querySelector('input[type=text]').value += primerNumero + "," + restoNumero;
-                    document.querySelector('input[type=text]').value += "e+" + restoNumero.length;
-                } else{
-                    document.querySelector('input[type=text]').value += ",e+0";
-                }
+            if(this.contieneOperadores()){
+                var result = this.splitCadenaUltimo(this.pantalla,  /[*/+-]/);
             } else{
-                var valor = document.querySelector('input[type=text]').value;
-                if(valor.length > 1){
-                    var primerNumero = valor.substring(0,1);
-                    var restoNumero = valor.substring(1,valor.length);
-                    document.querySelector('input[type=text]').value = document.querySelector('input[type=text]').value.slice(0,-valor.length);
-                    document.querySelector('input[type=text]').value += primerNumero + "," + restoNumero;
-                    document.querySelector('input[type=text]').value += "e+" + restoNumero.length;
-                } else{
-                    document.querySelector('input[type=text]').value += ",e+0";
-                }
+                var result = document.querySelector('input[type=text]').value;
+            }
+            if(result.length > 1){
+                var primerNumero = result.substring(0,1);
+                var restoNumero = result.substring(1,result.length);
+                document.querySelector('input[type=text]').value = document.querySelector('input[type=text]').value.slice(0,-result.length);
+                document.querySelector('input[type=text]').value += primerNumero + "," + restoNumero;
+                document.querySelector('input[type=text]').value += "e+" + restoNumero.length;
+            } else{
+                document.querySelector('input[type=text]').value += ",e+0";
             }
         }
         this.pantalla += "/";
         document.querySelector('input[type=text]').value += "/";
-        if(this.pantalla.includes(",e+")){
-            var numAnterior = this.pantalla.split(",");
-            numAnterior = numAnterior[0];
-            if(numAnterior.includes("+") || numAnterior.includes("-") || numAnterior.includes("/") || numAnterior.includes("*")){
-                numAnterior = numAnterior.split(/[*/+-]/);
-                numAnterior = numAnterior[numAnterior.length-1];
-            } 
-            var numPosterior = this.pantalla.split(",e+");
-            numPosterior = numPosterior[1].replace(/[*/+-]/,"");
-            if(numPosterior == 0){
-                this.pantalla = this.pantalla.replace(",e+0","");
-            } else{
-                var multiplicar = 10**numPosterior;
-                this.pantalla = this.pantalla.replace(numAnterior + ",e+" + numPosterior,numAnterior*multiplicar);
-            }
-            //document.querySelector('input[type=text]').value = this.pantalla;
-        }
+        this.cambiarExponente();
     }
 
     igual(){
-        console.log("Pantalla en igual: " + this.pantalla);
         if(this.pantalla.includes("--")){
             this.pantalla = this.pantalla.replace("--","+");
         } else if(this.pantalla.includes("++")){
@@ -1417,9 +1036,8 @@ class CalculadoraCientifica extends CalculadoraMilan{
         if(this.pantalla.includes(",e+")){
             var numAnterior = this.pantalla.split(",");
             numAnterior = numAnterior[0];
-            if(numAnterior.includes("+") || numAnterior.includes("-") || numAnterior.includes("/") || numAnterior.includes("*")){
-                numAnterior = numAnterior.split(/[*/+-]/);
-                numAnterior = numAnterior[numAnterior.length-1];
+            if(this.contieneOperadores()){
+                numAnterior = this.splitCadenaUltimo(numAnterior,  /[*/+-]/);
             } 
             var numPosterior = this.pantalla.split(",e+");
             numPosterior = numPosterior[1];
@@ -1446,6 +1064,7 @@ class CalculadoraCientifica extends CalculadoraMilan{
                 document.querySelector('input[type=text]').value += ",e+0";
             }
         }
+        this.equal = true;
     }
 }
 
