@@ -11,7 +11,7 @@ class CalculadoraMilan{
         this.on = true;
         this.operadorPulsado = false;
         this.numOperandos = 1;
-		document.querySelector('input[type=text]').value = "";
+		document.querySelector('input[type=text]').value = 0;
         document.addEventListener("keydown", (event) => {
             this.tecla(event.key, event);
         });
@@ -381,7 +381,6 @@ class CalculadoraCientifica extends CalculadoraMilan{
             
             this.pantalla += Number(num);
             document.querySelector('input[type=text]').value += Number(num);
-            this.expTecla = false;
         }
     }
 
@@ -841,23 +840,20 @@ class CalculadoraCientifica extends CalculadoraMilan{
     multiplicacion(){
         this.on = false;
         this.sqr = false;
-        this.equal = false;
-        if(this.fePulsado){
+        if(this.fePulsado && !this.equal && !this.expTecla){
             if(this.contieneOperadores()){
                 var result = this.splitCadenaUltimo(this.pantalla, /[*/+-]/);
             } else{
                 var result = document.querySelector('input[type=text]').value;
             }
-            if(result.length > 1){
-                var primerNumero = result.substring(0,1);
-                var restoNumero = result.substring(1,result.length);
-                document.querySelector('input[type=text]').value = document.querySelector('input[type=text]').value.slice(0,-result.length);
-                document.querySelector('input[type=text]').value += primerNumero + "," + restoNumero;
-                document.querySelector('input[type=text]').value += "e+" + restoNumero.length;
-            } else{
-                document.querySelector('input[type=text]').value += ",e+0";
-            }
+            this.pantalla = this.pantalla.slice(0,-result.length);
+            document.querySelector('input[type=text]').value = document.querySelector('input[type=text]').value.slice(0,-result.length);
+            result = Number(result).toExponential();
+            this.pantalla += result;
+            document.querySelector('input[type=text]').value += result;
         }
+        this.equal = false;
+        this.expTecla = false;
         this.pantalla += "*";
         document.querySelector('input[type=text]').value += "*";
         this.cambiarExponente();
@@ -886,23 +882,20 @@ class CalculadoraCientifica extends CalculadoraMilan{
     resta(){
         this.on = false;
         this.sqr = false;
-        this.equal = false;
-        if(this.fePulsado){
+        if(this.fePulsado && !this.equal && !this.expTecla){
             if(this.contieneOperadores()){
                 var result = this.splitCadenaUltimo(this.pantalla,  /[*/+-]/);
             } else{
                 var result = document.querySelector('input[type=text]').value;
             }
-            if(result.length > 1){
-                var primerNumero = result.substring(0,1);
-                var restoNumero = result.substring(1,result.length);
-                document.querySelector('input[type=text]').value = document.querySelector('input[type=text]').value.slice(0,-result.length);
-                document.querySelector('input[type=text]').value += primerNumero + "," + restoNumero;
-                document.querySelector('input[type=text]').value += "e+" + restoNumero.length;
-            } else{
-                document.querySelector('input[type=text]').value += ",e+0";
-            }
+            this.pantalla = this.pantalla.slice(0,-result.length);
+            document.querySelector('input[type=text]').value = document.querySelector('input[type=text]').value.slice(0,-result.length);
+            result = Number(result).toExponential();
+            this.pantalla += result;
+            document.querySelector('input[type=text]').value += result;
         }
+        this.equal = false;
+        this.expTecla = false;
         this.pantalla += "-";
         document.querySelector('input[type=text]').value += "-";
         this.cambiarExponente();
@@ -939,23 +932,20 @@ class CalculadoraCientifica extends CalculadoraMilan{
     suma(){
         this.on = false;
         this.sqr = false;
-        this.equal = false;
-        if(this.fePulsado){
+        if(this.fePulsado && !this.equal && !this.expTecla){
             if(this.contieneOperadores()){
                 var result = this.splitCadenaUltimo(this.pantalla,  /[*/+-]/);
             } else{
                 var result = document.querySelector('input[type=text]').value;
             }
-            if(result.length > 1){
-                var primerNumero = result.substring(0,1);
-                var restoNumero = result.substring(1,result.length);
-                document.querySelector('input[type=text]').value = document.querySelector('input[type=text]').value.slice(0,-result.length);
-                document.querySelector('input[type=text]').value += primerNumero + "," + restoNumero;
-                document.querySelector('input[type=text]').value += "e+" + restoNumero.length;
-            } else{
-                document.querySelector('input[type=text]').value += ",e+0";
-            }
+            this.pantalla = this.pantalla.slice(0,-result.length);
+            document.querySelector('input[type=text]').value = document.querySelector('input[type=text]').value.slice(0,-result.length);
+            result = Number(result).toExponential();
+            this.pantalla += result;
+            document.querySelector('input[type=text]').value += result;
         }
+        this.equal = false;
+        this.expTecla = false;
         this.pantalla += "+";
         document.querySelector('input[type=text]').value += "+";
         this.cambiarExponente();
@@ -1000,23 +990,20 @@ class CalculadoraCientifica extends CalculadoraMilan{
     division(){
         this.on = false;
         this.sqr = false;
-        this.equal = false;
-        if(this.fePulsado){
+        if(this.fePulsado && !this.equal && !this.expTecla){
             if(this.contieneOperadores()){
                 var result = this.splitCadenaUltimo(this.pantalla,  /[*/+-]/);
             } else{
                 var result = document.querySelector('input[type=text]').value;
             }
-            if(result.length > 1){
-                var primerNumero = result.substring(0,1);
-                var restoNumero = result.substring(1,result.length);
-                document.querySelector('input[type=text]').value = document.querySelector('input[type=text]').value.slice(0,-result.length);
-                document.querySelector('input[type=text]').value += primerNumero + "," + restoNumero;
-                document.querySelector('input[type=text]').value += "e+" + restoNumero.length;
-            } else{
-                document.querySelector('input[type=text]').value += ",e+0";
-            }
+            this.pantalla = this.pantalla.slice(0,-result.length);
+            document.querySelector('input[type=text]').value = document.querySelector('input[type=text]').value.slice(0,-result.length);
+            result = Number(result).toExponential();
+            this.pantalla += result;
+            document.querySelector('input[type=text]').value += result;
         }
+        this.equal = false;
+        this.expTecla = false;
         this.pantalla += "/";
         document.querySelector('input[type=text]').value += "/";
         this.cambiarExponente();
@@ -1051,17 +1038,9 @@ class CalculadoraCientifica extends CalculadoraMilan{
         super.igual();
         this.pantalla = document.querySelector('input[type=text]').value;
         if(this.fePulsado){
-            var valor = Number(eval(this.pantalla));
-            this.pantalla = valor.toString();
-            if(this.pantalla.length > 1){
-                var primerNumero = this.pantalla.substring(0,1);
-                var restoNumero = this.pantalla.substring(1,this.pantalla.length);
-                document.querySelector('input[type=text]').value = document.querySelector('input[type=text]').value.slice(0,-valor.length);
-                document.querySelector('input[type=text]').value += primerNumero + "," + restoNumero;
-                document.querySelector('input[type=text]').value += "e+" + restoNumero.length;
-            } else{
-                document.querySelector('input[type=text]').value += ",e+0";
-            }
+            var valor = Number(eval(this.pantalla)).toExponential();
+            this.pantalla = valor;
+            document.querySelector('input[type=text]').value = valor;
         }
         this.equal = true;
     }
