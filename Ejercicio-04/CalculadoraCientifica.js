@@ -1036,7 +1036,6 @@ class CalculadoraCientifica extends CalculadoraMilan{
             document.querySelector('input[type=text]').value = this.pantalla;
         }
         super.igual();
-        this.pantalla = document.querySelector('input[type=text]').value;
         if(this.fePulsado){
             var valor = Number(eval(this.pantalla)).toExponential();
             this.pantalla = valor;
