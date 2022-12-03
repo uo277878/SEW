@@ -1,0 +1,395 @@
+{
+    "features": [
+        {
+            "geometry": {
+                "coordinates": [
+                    -5.853598,
+                    43.372154,
+                    232
+                ],
+                "type": "Point"
+            },
+            "properties": {
+                "description": "Lugar de nacimiento de Miriam",
+                "name": "Lugar de nacimiento de Miriam"
+            },
+            "type": "Feature"
+        },
+        {
+            "geometry": {
+                "coordinates": [
+                    -5.562592,
+                    43.242939,
+                    290
+                ],
+                "type": "Point"
+            },
+            "properties": {
+                "description": "Lugar de residencia de Miriam",
+                "name": "Lugar de residencia de Miriam"
+            },
+            "type": "Feature"
+        },
+        {
+            "geometry": {
+                "coordinates": [
+                    -6.643842,
+                    42.572103,
+                    512
+                ],
+                "type": "Point"
+            },
+            "properties": {
+                "description": "Lugar de nacimiento de Héctor",
+                "name": "Lugar de nacimiento de Héctor"
+            },
+            "type": "Feature"
+        },
+        {
+            "geometry": {
+                "coordinates": [
+                    -6.325109,
+                    42.939614,
+                    1021
+                ],
+                "type": "Point"
+            },
+            "properties": {
+                "description": "Lugar de residencia de Héctor",
+                "name": "Lugar de residencia de Héctor"
+            },
+            "type": "Feature"
+        },
+        {
+            "geometry": {
+                "coordinates": [
+                    -6.638633,
+                    42.565608,
+                    512
+                ],
+                "type": "Point"
+            },
+            "properties": {
+                "description": "Lugar de nacimiento de María",
+                "name": "Lugar de nacimiento de María"
+            },
+            "type": "Feature"
+        },
+        {
+            "geometry": {
+                "coordinates": [
+                    -5.862443,
+                    43.362463,
+                    232
+                ],
+                "type": "Point"
+            },
+            "properties": {
+                "description": "Lugar de residencia de María",
+                "name": "Lugar de residencia de María"
+            },
+            "type": "Feature"
+        },
+        {
+            "geometry": {
+                "coordinates": [
+                    -6.630155,
+                    42.549176,
+                    512
+                ],
+                "type": "Point"
+            },
+            "properties": {
+                "description": "Lugar de nacimiento de Beatriz",
+                "name": "Lugar de nacimiento de Beatriz"
+            },
+            "type": "Feature"
+        },
+        {
+            "geometry": {
+                "coordinates": [
+                    -3.70184,
+                    42.34106,
+                    865
+                ],
+                "type": "Point"
+            },
+            "properties": {
+                "description": "Lugar de residencia de Beatriz",
+                "name": "Lugar de residencia de Beatriz"
+            },
+            "type": "Feature"
+        },
+        {
+            "geometry": {
+                "coordinates": [
+                    -5.721337,
+                    43.327938,
+                    219
+                ],
+                "type": "Point"
+            },
+            "properties": {
+                "description": "Lugar de nacimiento de Ana",
+                "name": "Lugar de nacimiento de Ana"
+            },
+            "type": "Feature"
+        },
+        {
+            "geometry": {
+                "coordinates": [
+                    -5.69391,
+                    43.31107,
+                    260
+                ],
+                "type": "Point"
+            },
+            "properties": {
+                "description": "Lugar de residencia de Ana",
+                "name": "Lugar de residencia de Ana"
+            },
+            "type": "Feature"
+        },
+        {
+            "geometry": {
+                "coordinates": [
+                    -5.720089,
+                    43.325943,
+                    219
+                ],
+                "type": "Point"
+            },
+            "properties": {
+                "description": "Lugar de nacimiento de Sonia",
+                "name": "Lugar de nacimiento de Sonia"
+            },
+            "type": "Feature"
+        },
+        {
+            "geometry": {
+                "coordinates": [
+                    -5.56558,
+                    43.21563,
+                    339
+                ],
+                "type": "Point"
+            },
+            "properties": {
+                "description": "Lugar de residencia de Sonia",
+                "name": "Lugar de residencia de Sonia"
+            },
+            "type": "Feature"
+        },
+        {
+            "geometry": {
+                "coordinates": [
+                    -5.71843,
+                    43.329581,
+                    219
+                ],
+                "type": "Point"
+            },
+            "properties": {
+                "description": "Lugar de nacimiento de Víctor",
+                "name": "Lugar de nacimiento de Víctor"
+            },
+            "type": "Feature"
+        },
+        {
+            "geometry": {
+                "coordinates": [
+                    -5.575029,
+                    43.26109,
+                    286
+                ],
+                "type": "Point"
+            },
+            "properties": {
+                "description": "Lugar de residencia de Víctor",
+                "name": "Lugar de residencia de Víctor"
+            },
+            "type": "Feature"
+        },
+        {
+            "geometry": {
+                "coordinates": [
+                    -5.717754,
+                    43.327143,
+                    219
+                ],
+                "type": "Point"
+            },
+            "properties": {
+                "description": "Lugar de nacimiento de Ana",
+                "name": "Lugar de nacimiento de Ana"
+            },
+            "type": "Feature"
+        },
+        {
+            "geometry": {
+                "coordinates": [
+                    -5.5629,
+                    43.24538,
+                    290
+                ],
+                "type": "Point"
+            },
+            "properties": {
+                "description": "Lugar de residencia de Ana",
+                "name": "Lugar de residencia de Ana"
+            },
+            "type": "Feature"
+        },
+        {
+            "geometry": {
+                "coordinates": [
+                    -5.72167,
+                    43.32781,
+                    219
+                ],
+                "type": "Point"
+            },
+            "properties": {
+                "description": "Lugar de nacimiento de Laura",
+                "name": "Lugar de nacimiento de Laura"
+            },
+            "type": "Feature"
+        },
+        {
+            "geometry": {
+                "coordinates": [
+                    -5.571772,
+                    43.258327,
+                    286
+                ],
+                "type": "Point"
+            },
+            "properties": {
+                "description": "Lugar de residencia de Laura",
+                "name": "Lugar de residencia de Laura"
+            },
+            "type": "Feature"
+        },
+        {
+            "geometry": {
+                "coordinates": [
+                    -6.612259,
+                    42.553778,
+                    512
+                ],
+                "type": "Point"
+            },
+            "properties": {
+                "description": "Lugar de nacimiento de Rubén",
+                "name": "Lugar de nacimiento de Rubén"
+            },
+            "type": "Feature"
+        },
+        {
+            "geometry": {
+                "coordinates": [
+                    -5.853782,
+                    43.371467,
+                    232
+                ],
+                "type": "Point"
+            },
+            "properties": {
+                "description": "Lugar de residencia de Rubén",
+                "name": "Lugar de residencia de Rubén"
+            },
+            "type": "Feature"
+        },
+        {
+            "geometry": {
+                "coordinates": [
+                    -6.59619,
+                    42.54587,
+                    512
+                ],
+                "type": "Point"
+            },
+            "properties": {
+                "description": "Lugar de nacimiento de Sergio",
+                "name": "Lugar de nacimiento de Sergio"
+            },
+            "type": "Feature"
+        },
+        {
+            "geometry": {
+                "coordinates": [
+                    -6.309549,
+                    42.938343,
+                    1021
+                ],
+                "type": "Point"
+            },
+            "properties": {
+                "description": "Lugar de residencia de Sergio",
+                "name": "Lugar de residencia de Sergio"
+            },
+            "type": "Feature"
+        },
+        {
+            "geometry": {
+                "coordinates": [
+                    -5.606964,
+                    43.5251,
+                    3
+                ],
+                "type": "Point"
+            },
+            "properties": {
+                "description": "Lugar de nacimiento de Lara",
+                "name": "Lugar de nacimiento de Lara"
+            },
+            "type": "Feature"
+        },
+        {
+            "geometry": {
+                "coordinates": [
+                    -5.66152,
+                    43.53573,
+                    3
+                ],
+                "type": "Point"
+            },
+            "properties": {
+                "description": "Lugar de residencia de Lara",
+                "name": "Lugar de residencia de Lara"
+            },
+            "type": "Feature"
+        },
+        {
+            "geometry": {
+                "coordinates": [
+                    -5.672075,
+                    43.12998,
+                    625
+                ],
+                "type": "Point"
+            },
+            "properties": {
+                "description": "Lugar de nacimiento de Alicia",
+                "name": "Lugar de nacimiento de Alicia"
+            },
+            "type": "Feature"
+        },
+        {
+            "geometry": {
+                "coordinates": [
+                    -5.76667,
+                    43.25,
+                    386
+                ],
+                "type": "Point"
+            },
+            "properties": {
+                "description": "Lugar de residencia de Alicia",
+                "name": "Lugar de residencia de Alicia"
+            },
+            "type": "Feature"
+        }
+    ],
+    "type": "FeatureCollection"
+}

@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document>
+<Placemark>
+<name>Lugar de nacimiento de Miriam</name>
+<Point>
+<coordinates>-5.853598,43.372154,232</coordinates>
+</Point>
+</Placemark>
+<Placemark>
+<name>Lugar de residencia de Miriam</name>
+<Point>
+<coordinates>-5.562592,43.242939,290</coordinates>
+</Point>
+</Placemark>
+<Placemark>
+<name>Lugar de nacimiento de Héctor</name>
+<Point>
+<coordinates>-6.643842,42.572103,512</coordinates>
+</Point>
+</Placemark>
+<Placemark>
+<name>Lugar de residencia de Héctor</name>
+<Point>
+<coordinates>-6.325109,42.939614,1021</coordinates>
+</Point>
+</Placemark>
+<Placemark>
+<name>Lugar de nacimiento de María</name>
+<Point>
+<coordinates>-6.638633,42.565608,512</coordinates>
+</Point>
+</Placemark>
+<Placemark>
+<name>Lugar de residencia de María</name>
+<Point>
+<coordinates>-5.862443,43.362463,232</coordinates>
+</Point>
+</Placemark>
+<Placemark>
+<name>Lugar de nacimiento de Beatriz</name>
+<Point>
+<coordinates>-6.630155,42.549176,512</coordinates>
+</Point>
+</Placemark>
+<Placemark>
+<name>Lugar de residencia de Beatriz</name>
+<Point>
+<coordinates>-3.70184,42.34106,865</coordinates>
+</Point>
+</Placemark>
+<Placemark>
+<name>Lugar de nacimiento de Ana</name>
+<Point>
+<coordinates>-5.721337,43.327938,219</coordinates>
+</Point>
+</Placemark>
+<Placemark>
+<name>Lugar de residencia de Ana</name>
+<Point>
+<coordinates>-5.69391,43.31107,260</coordinates>
+</Point>
+</Placemark>
+<Placemark>
+<name>Lugar de nacimiento de Sonia</name>
+<Point>
+<coordinates>-5.720089,43.325943,219</coordinates>
+</Point>
+</Placemark>
+<Placemark>
+<name>Lugar de residencia de Sonia</name>
+<Point>
+<coordinates>-5.56558,43.21563,339</coordinates>
+</Point>
+</Placemark>
+<Placemark>
+<name>Lugar de nacimiento de Víctor</name>
+<Point>
+<coordinates>-5.718430,43.329581,219</coordinates>
+</Point>
+</Placemark>
+<Placemark>
+<name>Lugar de residencia de Víctor</name>
+<Point>
+<coordinates>-5.575029,43.261090,286</coordinates>
+</Point>
+</Placemark>
+<Placemark>
+<name>Lugar de nacimiento de Ana</name>
+<Point>
+<coordinates>-5.717754,43.327143,219</coordinates>
+</Point>
+</Placemark>
+<Placemark>
+<name>Lugar de residencia de Ana</name>
+<Point>
+<coordinates>-5.5629000,43.2453800,290</coordinates>
+</Point>
+</Placemark>
+<Placemark>
+<name>Lugar de nacimiento de Laura</name>
+<Point>
+<coordinates>-5.72167,43.32781,219</coordinates>
+</Point>
+</Placemark>
+<Placemark>
+<name>Lugar de residencia de Laura</name>
+<Point>
+<coordinates>-5.571772,43.258327,286</coordinates>
+</Point>
+</Placemark>
+<Placemark>
+<name>Lugar de nacimiento de Rubén</name>
+<Point>
+<coordinates>-6.612259,42.553778,512</coordinates>
+</Point>
+</Placemark>
+<Placemark>
+<name>Lugar de residencia de Rubén</name>
+<Point>
+<coordinates>-5.853782,43.371467,232</coordinates>
+</Point>
+</Placemark>
+<Placemark>
+<name>Lugar de nacimiento de Sergio</name>
+<Point>
+<coordinates>-6.59619,42.545870,512</coordinates>
+</Point>
+</Placemark>
+<Placemark>
+<name>Lugar de residencia de Sergio</name>
+<Point>
+<coordinates>-6.309549,42.938343,1021</coordinates>
+</Point>
+</Placemark>
+<Placemark>
+<name>Lugar de nacimiento de Lara</name>
+<Point>
+<coordinates>-5.606964,43.525100,3</coordinates>
+</Point>
+</Placemark>
+<Placemark>
+<name>Lugar de residencia de Lara</name>
+<Point>
+<coordinates>-5.66152,43.53573,3</coordinates>
+</Point>
+</Placemark>
+<Placemark>
+<name>Lugar de nacimiento de Alicia</name>
+<Point>
+<coordinates>-5.672075,43.129980,625</coordinates>
+</Point>
+</Placemark>
+<Placemark>
+<name>Lugar de residencia de Alicia</name>
+<Point>
+<coordinates>-5.76667,43.25,386</coordinates>
+</Point>
+</Placemark>
+</Document>
+</kml>

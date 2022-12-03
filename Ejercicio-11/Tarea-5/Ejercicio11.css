@@ -1,0 +1,45 @@
+/*****************************
+/* Autor: Miriam González Alonso
+/* Hoja de estilo del ejercicio 8 de la práctica 3
+*****************************/
+/*Especificidad: 001*/
+body {
+    color: #155263;
+    background-color: #fffbcb;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+/*Especificidad: 001*/
+h1 {
+    background-color: #ffc93c;
+    /*color está heredado de body*/
+    padding: 1em;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/*Especificidad: 001*/
+input {
+    padding: 0.5em;
+    margin-left: 1em;
+    margin-top:0.5em;
+    background-color: #ffc93c;
+}
+
+/*Especificidad: 001*/
+section {
+    margin: 2em;
+}
+
+main{
+    padding: 20%;
+}
+
+/*Especificidad: 001*/
+footer {
+    background-color: #ff6f3c;
+    color: black;
+    text-align: center;
+    padding: 1em;
+    margin-top: 2em;
+}

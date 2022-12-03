@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="author" content="Miriam González Alonso" />
+    <meta name="description" content="Página web para subir archivos y ver su contenido" />
+    <meta name="viewport" content="width=device-width, initial scale=1.0" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="Ejercicio14.js"></script>
+    <title>Ejercicio 14</title>
+    <link rel="stylesheet" type="text/css" href="Ejercicio14.css" />
+</head>
+
+<body>
+    <h1>Uso de varias APIs</h1>
+    <main>
+        <label for="subirArchivo">Archivo:</label>
+        <input id="subirArchivo" type="file" name="archivo" onchange="lector.leerFichero(this.files)"/>
+        <p>O arrastre el archivo a este área:</p>
+        <textarea name="soltar" readonly ondrop="lector.dragAndDrop(event)" ondragover="lector.dragOverHandler(event)"></textarea>
+        <p>Contenido del archivo: </p>
+        <textarea name="contenido" readonly></textarea>
+        <label for="copiar">Copiar contenido:</label>
+        <input id="copiar" type="button" value="Copiar" onclick="lector.copiar()"/>
+        <textarea name="pegado"></textarea>
+    </main>
+</body>
+</html>

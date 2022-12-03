@@ -1,0 +1,4 @@
+https://api.metalpriceapi.com/v1/latest
+  ?api_key=5829141c3ace12ae5457fc90d2c2477b
+  &base=EUR
+  &currencies=XAU

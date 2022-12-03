@@ -1,0 +1,95 @@
+/*****************************
+/* Autor: Miriam González Alonso
+/* Hoja de estilo del ejercicio 8 de la práctica 3
+*****************************/
+/*Especificidad: 001*/
+body {
+    color: #155263;
+    background-color: #fffbcb;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+/*Especificidad: 001*/
+a {
+    /*background-color está heredado de body*/
+    color: #155263;
+}
+
+/*Especificidad: 001*/
+h1 {
+    background-color: #ffc93c;
+    /*color está heredado de body*/
+    padding: 1em;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/*Especificidad: 001*/
+input {
+    padding: 0.5em;
+    margin-left: 1em;
+    margin-top:0.5em;
+}
+
+/*Especificidad: 001*/
+h1, main, article {
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+}
+
+/*Especificidad: 001*/
+main {
+    padding: 0.5em;
+}
+
+/*Especificidad: 001*/
+h2 {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: #123560;
+    /*background-color está heredado de body*/
+}
+
+/*Especificidad: 001*/
+h3 {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: #113123;
+    /*background-color está heredado de body*/
+}
+
+/*Especificidad: 001*/
+img {
+    margin-top: 2em;
+    max-width: 50%;
+    height: auto;
+}
+
+/*Especificidad: 001*/
+table {
+    border-collapse: collapse;
+}
+
+/*Especificidad: 012*/
+tr td:first-child {
+    text-align: center;
+}
+
+/*Especificidad: 001*/
+th,td,tr {
+    border: 0.2em solid black;
+    padding: 0.5em;
+}
+
+/*Especificidad: 001*/
+th {
+    background-color: #ffc93c;
+    /*color está heredado de body*/
+}
+
+/*Especificidad: 001*/
+footer {
+    background-color: #ff6f3c;
+    color: black;
+    text-align: center;
+    padding: 1em;
+    margin-top: 2em;
+}

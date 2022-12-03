@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="author" content="Miriam González Alonso" />
+    <meta name="description" content="Página web que obtiene mapa dinámico de un KML" />
+    <meta name="viewport" content="width=device-width, initial scale=1.0" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDDmY2Ug4PRGw6XQZWl8L2ZRUIJ_5kMUtc"></script>
+    <script src="MapaGeoJSON.js"></script>
+    <title>Ejercicio 13 - Tarea 2</title>
+    <link rel="stylesheet" type="text/css" href="MapaGeoJSON.css" />
+</head>
+
+<body>
+    <h1>Ejercicio 13 - GeoJSON</h1>
+    <section>
+        <h2>Mapa dinámico de un GeoJSON</h2>
+        <label for="subirArchivo">Archivo GeoJSON:</label>
+        <input id="subirArchivo" type="file" name="archivo" onchange="mapa.cargarDatos(this.files)"/>
+    </section>
+    <main>
+
+    </main>
+</body>
+
+</html>
