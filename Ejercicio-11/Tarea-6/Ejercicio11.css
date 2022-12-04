@@ -7,8 +7,6 @@ body {
     color: #155263;
     background-color: #fffbcb;
     font-family: 'Times New Roman', Times, serif;
-    display: flex;
-    flex-direction: column;
 }
 
 /*Especificidad: 001*/
