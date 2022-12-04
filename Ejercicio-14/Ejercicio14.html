@@ -17,13 +17,14 @@
     <main>
         <label for="subirArchivo">Archivo:</label>
         <input id="subirArchivo" type="file" name="archivo" onchange="lector.leerFichero(this.files)"/>
-        <p>O arrastre el archivo a este área:</p>
-        <textarea name="soltar" readonly ondrop="lector.dragAndDrop(event)" ondragover="lector.dragOverHandler(event)"></textarea>
-        <p>Contenido del archivo: </p>
-        <textarea name="contenido" readonly></textarea>
+        <label for="soltar">O arrastre el archivo a este área:</label>
+        <textarea id="soltar" name="soltar" readonly ondrop="lector.dragAndDrop(event)" ondragover="lector.dragOverHandler(event)"></textarea>
+        <label for="contenido">Contenido del archivo: </label>
+        <textarea id="contenido" name="contenido" readonly></textarea>
         <label for="copiar">Copiar contenido:</label>
         <input id="copiar" type="button" value="Copiar" onclick="lector.copiar()"/>
-        <textarea name="pegado"></textarea>
+        <label for="pegar">Aquí puede pegar el contenido copiado: </label>
+        <textarea id="pegar" name="pegado"></textarea>
     </main>
 </body>
 </html>

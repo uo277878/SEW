@@ -1,18 +1,12 @@
 /*****************************
 /* Autor: Miriam González Alonso
-/* Hoja de estilos que se aplicará a todo el sitio web
+/* Hoja de estilos para el ejercicio 14 de la práctica 3
 *****************************/
 /*Especificidad: 001*/
 body {
     color: #155263;
     background-color: #fffbcb;
     font-family: 'Times New Roman', Times, serif;
-}
-
-/*Especificidad: 001*/
-a {
-    /*background-color está heredado de body*/
-    color: #155263;
 }
 
 /*Especificidad: 001*/
@@ -24,10 +18,14 @@ h1 {
     font-family: Arial, Helvetica, sans-serif;
 }
 
+/*Especificidad: 001*/
 label {
     margin-left: 2em;
+    margin-top: 1em;
+    margin-bottom: 1em;
 }
 
+/*Especificidad: 001*/
 p {
     margin-left: 1em;
 }
@@ -47,16 +45,14 @@ input[type="button"]{
     margin-bottom: 1em;
 }
 
+/*Especificidad: 001*/
 main{
     display: flex;
     flex-direction: column;
-}
-
-/*Especificidad: 001*/
-main {
     padding: 0.5em;
 }
 
+/*Especificidad: 011*/
 textarea[name="soltar"]{
     margin-left: 2em;
     resize: none;
@@ -64,6 +60,7 @@ textarea[name="soltar"]{
     height: 5em;
 }
 
+/*Especificidad: 011*/
 textarea[name="contenido"], [name="pegado"] {
     margin-left: 2em;
     resize: none;
