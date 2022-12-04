@@ -1,6 +1,6 @@
 /*****************************
 /* Autor: Miriam González Alonso
-/* Hoja de estilo del ejercicio 8 de la práctica 3
+/* Hoja de estilo del ejercicio 11 Tarea 6 de la práctica 3
 *****************************/
 /*Especificidad: 001*/
 body {
@@ -26,24 +26,16 @@ input[type="button"]{
     margin-left: 1em;
     margin-top:0.5em;
     background-color: #ffc93c;
+    color: black;
 }
 
 /*Especificidad: 001*/
 section {
     margin: 2em;
-    /*padding: 20%;*/
-}
-
-main{
-    padding: 20%;
-    margin: 2em;
 }
 
 /*Especificidad: 001*/
-footer {
-    background-color: #ff6f3c;
-    color: black;
-    text-align: center;
-    padding: 1em;
-    margin-top: 2em;
+main{
+    padding: 20%;
+    margin: 2em;
 }

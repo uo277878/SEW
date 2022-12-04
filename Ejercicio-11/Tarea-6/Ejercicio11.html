@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="author" content="Miriam González Alonso" />
-    <meta name="description" content="Página web que obtiene mi geolocalización" />
+    <meta name="description" content="Página web que muestra ciudad o pueblo en mapa dinámico" />
     <meta name="viewport" content="width=device-width, initial scale=1.0" />
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDDmY2Ug4PRGw6XQZWl8L2ZRUIJ_5kMUtc&libraries=places"></script>
     <script src="Ejercicio11.js"></script>
@@ -16,7 +16,7 @@
     <h1>Mapa</h1>
     <section>
         <h2>¿Quieres buscar lugares?</h2>
-        <label for="busqueda" name="busqueda">Buscar pueblo: </label>
+        <label for="busqueda">Buscar pueblo: </label>
         <input type="text" id="busqueda" name="busqueda"/>
 
         <input type="button" value="Ver mapa" onclick="mapaDinamico.initMap()" />
