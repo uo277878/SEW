@@ -1,5 +1,5 @@
 "use strict";
-class Geolocalización {
+class GeoLocalización {
     constructor (){
         navigator.geolocation.getCurrentPosition(this.getPosicion.bind(this), this.verErrores.bind(this));
     }
@@ -32,6 +32,7 @@ class Geolocalización {
     ver(){
         var ubicacion=document.querySelector("body > section");
         var datos='<p>'+ this.mensaje + '</p>'; 
+        datos+="<h2>Datos de mi geolocalización</h2>"
         datos+='<p>Longitud: '+this.longitud +' grados</p>'; 
         datos+='<p>Latitud: '+this.latitud +' grados</p>';
         datos+='<p>Precisión de la longitud y latitud: '+ this.precision +' metros</p>';
@@ -42,4 +43,4 @@ class Geolocalización {
         ubicacion.innerHTML = datos;
     }
 }
-var geo = new Geolocalización();
+var geo = new GeoLocalización();
