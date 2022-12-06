@@ -15,8 +15,24 @@
     <h1>Leyendo un archivo con API File</h1>
     <main>
         <label for="subirArchivos">Archivos:</label>
-        <input id="subirArchivos" type="file" name="archivos" onchange="lectorTexto.leerArchivos()" multiple="">
-    <p>Número de archivos seleccionados: 3</p><p>Tamaño total: 1490 bytes</p><p>Archivo nº 1: Ejemplo.json Tamaño: 682 bytes  Tipo: application/json</p><p>Archivo nº 2: Ejemplo.txt Tamaño: 346 bytes  Tipo: text/plain</p><p>Archivo nº 3: Ejemplo.xml Tamaño: 462 bytes  Tipo: text/xml</p></main>
+        <input id="subirArchivos" type="file" name="archivos" onchange="lectorTexto.leerArchivos()">
+    <p>Archivo: Ejemplo.xml Tamaño: 541 bytes  Tipo: text/xml</p></main>
+    <aside>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;!DOCTYPE pizzas SYSTEM "pizzas.dtd"&gt;
+&lt;pizzas&gt;
+    &lt;pizza nombre="Barbacoa" precio="8"&gt;
+        &lt;ingrediente nombre="Salsa Barbacoa"/&gt;
+        &lt;ingrediente nombre="Mozzarella"/&gt;
+        &lt;ingrediente nombre="Pollo"/&gt;
+        &lt;ingrediente nombre="Bacon"/&gt;
+        &lt;ingrediente nombre="Ternera"/&gt;
+    &lt;/pizza&gt;
+    &lt;pizza nombre="Margarita" precio="6"&gt;
+        &lt;ingrediente nombre="Tomate"/&gt;
+        &lt;ingrediente nombre="Jamón"/&gt;
+        &lt;ingrediente nombre="Queso"/&gt;
+    &lt;/pizza&gt;
+&lt;/pizzas&gt;</aside>
 
 
 </body></html>
