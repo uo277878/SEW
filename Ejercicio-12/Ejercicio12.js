@@ -6,20 +6,17 @@ class LectorTexto {
 
     leerArchivos(){
         $("p").remove();
-        var nBytes = 0;
-        var archivos = document.querySelector('input[type=file]').files;
-        var numArchivos = archivos.length;
-        for (var i = 0; i < numArchivos; i++) {
-          nBytes += archivos[i].size;
-        }
-        var nombresTiposTamaños="";
-        for (var i = 0; i < numArchivos; i++) {
-          nombresTiposTamaños += "<p>Archivo nº " + (i+1) +": "+ archivos[i].name  + " Tamaño: " + archivos[i].size +" bytes " + " Tipo: " + archivos[i].type+"</p>" ;
-        }
+        var archivo = document.querySelector('input[type=file]').files[0];
+        var nBytes = archivo.size;
+        var nombreTipoTamaño= "<p>Archivo: "+ archivo.name  + " Tamaño: " + archivo.size +" bytes " + " Tipo: " + archivo.type+"</p>" ;
+        var lector = new FileReader();
+        lector.onload = function (evento) {
+          console.log(lector.result);
+			    $("aside").text(lector.result);
+        }      
+        lector.readAsText(archivo);
         
-        $("main").append("<p>Número de archivos seleccionados: " + numArchivos + "</p>");
-        $("main").append("<p>Tamaño total: " + nBytes + " bytes</p>");
-        $("main").append(nombresTiposTamaños);
+        $("main").append(nombreTipoTamaño);
     }
 }
 var lectorTexto = new LectorTexto();
