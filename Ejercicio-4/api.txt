@@ -1,0 +1,13 @@
+URL
+
+https://commodities-api.com/api/latest?access_key=6eld8xr3itqbv0202z89vcpol1lj4yc2bmq4pu0jn3uiudtu7emvr7visc1u&base=EUR&symbols=XCU
+
+
+API KEY
+
+6eld8xr3itqbv0202z89vcpol1lj4yc2bmq4pu0jn3uiudtu7emvr7visc1u
+
+
+Resultado petición
+
+{"data":{"success":true,"timestamp":1671015120,"date":"2022-12-14","base":"EUR","rates":{"XCU":4.414979228285076},"unit":"per ounce"}}

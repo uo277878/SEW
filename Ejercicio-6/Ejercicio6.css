@@ -1,0 +1,22 @@
+/*****************************
+/* Autor: Miriam González Alonso
+/* hoja de estilos del ejercicio 6
+
+/*Especificidad: 001*/
+body {
+  font-family: Tahoma, sans-serif;
+  color: #155263;
+  background-color: #fff;
+}
+
+/*Especificidad: 001*/
+h1 {
+  color: #fff;    
+  background-color:#FF5733; 
+  padding: 1em;   
+}
+
+/*Especificidad: 001*/
+nav{
+  color: black;
+}
