@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<!-- saved from url=(0014)about:internet -->
+<html lang="es"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="author" content="Miriam González Alonso">
+    <meta name="description" content="Página web de una calculadora científica">
+    <meta name="viewport" content="width=device-width, initial scale=1.0">
+    <title>Calculadora Científica</title>
+    <link rel="stylesheet" type="text/css" href="./CalculadoraCientifica_files/CalculadoraCientifica.css">
+
+</head>
+
+<body>
+    <h1>Calculadora Científica</h1>
+        <form action="http://localhost/Ejercicio-2/CalculadoraCientifica.php" method="post" name="Calculadora">
+        <label for="texto">Windows</label>
+        <input id="texto" type="text" value="0" name="pantalla" readonly="">
+        <button type="submit" name="deg">DEG</button>
+        <button type="submit" name="hyp">HYP</button>
+        <button type="submit" name="fe">F-E</button>
+
+        <button type="submit" name="mc">MC</button>
+        <button type="submit" name="mr">MR</button>
+        <button type="submit" name="mMas">M+</button>
+        <button type="submit" name="mMenos">M-</button>
+        <button type="submit" name="ms">MS</button>
+
+        <button type="submit" name="potencia2">x^2</button>
+        <button type="submit" name="potencia">x^y</button>
+        <button type="submit" name="sin">sin</button>
+        <button type="submit" name="cos">cos</button>
+        <button type="submit" name="tan">tan</button>
+
+        <button type="submit" name="raiz">√</button>
+        <button type="submit" name="potencia10">10^x</button>
+        <button type="submit" name="logaritmo">log</button>
+        <button type="submit" name="exponente">Exp</button>
+        <button type="submit" name="modulo">Mod</button>
+
+        <button type="submit" name="flecha">↑</button>
+        <button type="submit" name="ce">CE</button>
+        <button type="submit" name="borrarTodo">C</button>
+        <button type="submit" name="borrar">←</button>
+        <button type="submit" name="division">/</button>
+
+        <button type="submit" name="pi">π</button>
+        <button type="submit" name="7">7</button>
+        <button type="submit" name="8">8</button>
+        <button type="submit" name="9">9</button>
+        <button type="submit" name="multiplicacion">x</button>
+
+        <button type="submit" name="factorial">n!</button>
+        <button type="submit" name="4">4</button>
+        <button type="submit" name="5">5</button>
+        <button type="submit" name="6">6</button>
+        <button type="submit" name="resta">-</button>
+
+        <button type="submit" name="cambiarSigno">+/-</button>
+        <button type="submit" name="1">1</button>
+        <button type="submit" name="2">2</button>
+        <button type="submit" name="3">3</button>
+        <button type="submit" name="suma">+</button>
+
+        <button type="submit" name="parentesisIzq" onclick="calculadora.parentesisIzq()">(</button>
+        <button type="submit" name="parentesisDcha" onclick="calculadora.parentesisDcha()">)</button>
+        <button type="submit" name="0" onclick="calculadora.digitos(0)">0</button>
+        <button type="submit" name="punto" onclick="calculadora.punto()">,</button>
+        <button type="submit" name="igual" onclick="calculadora.igual()">=</button>
+        </form>
+
+</body></html>
