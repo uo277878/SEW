@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<!-- saved from url=(0014)about:internet -->
+<html lang="es"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="author" content="Miriam González Alonso">
+    <meta name="description" content="Página para eliminar los datos de una persona">
+    <meta name="viewport" content="width=device-width, initial scale=1.0">
+    <title>Ejercicio 6</title>
+    <link rel="stylesheet" type="text/css" href="./eliminarPeticion_files/Ejercicio6.css">
+
+</head>
+<body>
+    <h1>Ejercicio 6</h1>
+    <nav>
+        <a href="http://localhost/Ejercicio-6/CrearBD.php" title="Crear base de datos" tabindex="1">Crear base de datos</a>
+        <a href="http://localhost/Ejercicio-6/CrearTabla.php" title="Crear una tabla" tabindex="2">Crear una tabla</a>
+        <a href="http://localhost/Ejercicio-6/InsertarDatos.php" title="Insertar datos en una tabla" tabindex="3">Insertar datos en una tabla</a>
+        <a href="http://localhost/Ejercicio-6/BuscarDatos.php" title="Buscar datos en una tabla" tabindex="4">Buscar datos en una tabla</a>
+        <a href="http://localhost/Ejercicio-6/ModificarDatos.php" title="Modificar datos de una tabla" tabindex="5">Modificar datos de una tabla</a>
+        <a href="http://localhost/Ejercicio-6/EliminarDatos.php" title="Eliminar datos de una tabla" tabindex="6">Eliminar datos de una tabla</a>
+        <a href="http://localhost/Ejercicio-6/GenerarInforme.php" title="Generar un informe" tabindex="7">Generar un informe</a>
+        <a href="http://localhost/Ejercicio-6/CargarCSV.php" title="Cargar datos de un CSV" tabindex="8">Cargar datos de un CSV</a>
+        <a href="http://localhost/Ejercicio-6/Exportar.php" title="Exportar datos a CSV" tabindex="9">Exportar datos a CSV</a>
+	</nav>
+    <form action="http://localhost/Ejercicio-6/EliminarDatos.php#" method="post">
+        <p>
+            <label for="id">Introduzca el id de la persona que quiere borrar:</label>
+            <input id="id" type="text" name="id">
+        </p>
+        <input type="submit" name="eliminar" value="Eliminar datos">
+    </form>
+    <p>Datos de la persona eliminados con éxito</p>
+</body></html>
